@@ -116,7 +116,7 @@ Limitation: on Vercel's free Hobby plan it records **page views only**; custom e
 
 Still open (data only the owner can provide):
 
-- [ ] GitHub repository URL (also shown as the footer's GitHub link)
+- [x] GitHub repository: https://github.com/Le-Jr/portfolio (also the footer's GitHub link)
 
 Decided:
 

@@ -34,6 +34,6 @@ export const start = {
 export const contact = {
   email: "nascimentoleandrojr@gmail.com",
   linkedin: "https://www.linkedin.com/in/leandro-jr23",
-  /** TODO: the repository URL, which the owner will send. Hidden while null. */
-  github: null as string | null,
+  /** Shown in the footer. Hidden when null. */
+  github: "https://github.com/Le-Jr/portfolio" as string | null,
 };

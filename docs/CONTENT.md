@@ -281,7 +281,7 @@ How the results are split (revenue, equity, fixed fee plus percentage) is **not*
 | `contact.emailLabel` | Email me | Mande um e-mail |
 | `contact.linkedin` | https://www.linkedin.com/in/leandro-jr23 | — |
 | `contact.linkedinLabel` | LinkedIn | LinkedIn |
-| `contact.github` | TODO: the repository URL, which the owner will send | — |
+| `contact.github` | https://github.com/Le-Jr/portfolio | — |
 | `contact.githubLabel` | GitHub | GitHub |
 
 Contact in version 1 is `mailto:` only (no form). A contact form is in the version 2 backlog.
@@ -295,7 +295,7 @@ Contact in version 1 is `mailto:` only (no form). A contact form is in the versi
 | `footer.continue` (link back to the title screen) | CONTINUE? | CONTINUAR? |
 | `footer.madeBy` | Made by Leandro Junior | Feito por Leandro Junior |
 
-Links: GitHub (TODO, hidden until set), LinkedIn, email.
+Links: GitHub (the portfolio repository), LinkedIn, email.
 
 | Key | en | pt-BR |
 | --- | --- | --- |
