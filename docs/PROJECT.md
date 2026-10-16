@@ -32,7 +32,7 @@ Version 1 is a **single scrolling page**. Each section imitates a game screen, u
 
 | # | Section | Game metaphor | Content |
 | --- | --- | --- | --- |
-| 1 | Start | Arcade title screen, "PRESS START" | Logo-styled name with "FULL STACK DEVELOPER" under it, one line about what he does, an animated pixel-art scene of him coding at his desk over a night skyline, a "play" button (scrolls down) and a "talk to me" button |
+| 1 | Start | Arcade title screen, "PRESS START" | Logo-styled name with "FULL STACK DEVELOPER" under it, one line about what he does, an animated pixel-art scene of him coding at his desk over a sunset skyline, a "play" button (scrolls down) and a "talk to me" button |
 | 2 | About | Player select | Pixel-art portrait on a "selected" card, a character grid with an open 2P slot, class ("Full-Stack Dev"), attributes and a short paragraph |
 | 3 | Timeline | Career mode | Stages stacked top to bottom in time order along a level path; each stage shows its years, title and text, with the current one marked "NOW PLAYING" |
 | 4 | Skills | Inventory and status bar | Stack grouped by category, with items (and optional RPG levels per category) |

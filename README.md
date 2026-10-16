@@ -8,7 +8,7 @@ It's a single static page where each section is a game screen:
 
 | # | Section | Game screen |
 | --- | --- | --- |
-| 1 | Start | Arcade boot sequence, then a title screen: a logo-styled name, an animated pixel-art developer coding at his desk, and a night skyline |
+| 1 | Start | Arcade boot sequence, then a title screen: a logo-styled name, an animated pixel-art developer coding at his desk, and a sunset skyline |
 | 2 | About | Player select |
 | 3 | Timeline | Career mode: stages stacked in time order |
 | 4 | Skills | Inventory with an item description panel |
@@ -131,7 +131,7 @@ The portrait in `content/avatar.ts` is a 32×32 placeholder. Each character in t
 
 ## Design system
 
-The full guide is in [docs/STYLE_GUIDE.md](docs/STYLE_GUIDE.md). The short version:
+The palette is "Metal Slug": warm shadow ramps, amber and orange as the hero colors, sky blue as the cool accent, and a desert-sunset title screen. The full guide is in [docs/STYLE_GUIDE.md](docs/STYLE_GUIDE.md). The short version:
 
 - **Palette.** Closed color ramps defined as CSS variables. Components use semantic tokens (`bg-surface`, `text-primary`, `text-link`…). Tailwind's default colors are disabled.
 - **Components.**
