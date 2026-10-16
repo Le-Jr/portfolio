@@ -420,6 +420,77 @@
 }
 
 /* ---------- Animations (all off under prefers-reduced-motion) ---------- */
+
+/* Dev scene poses (components/dev-scene.tsx). Hidden by default, so reduced
+   motion shows only the still typing pose; the 14 s cycle below swaps them. */
+.ds-error-screen,
+.ds-drink-lift,
+.ds-drink-sip,
+.ds-shock {
+  opacity: 0;
+}
+
+/* Cycle: type 0–38%, drink 38–53% (lift, sip, lift), type 53–66%,
+   error 66–84% (he jumps at 68%), type 84–100%. */
+@keyframes ds-type {
+  0% { opacity: 1; }
+  38% { opacity: 0; }
+  53% { opacity: 1; }
+  68% { opacity: 0; }
+  84% { opacity: 1; }
+}
+
+@keyframes ds-drink-lift {
+  0% { opacity: 0; }
+  38% { opacity: 1; }
+  41% { opacity: 0; }
+  50% { opacity: 1; }
+  53% { opacity: 0; }
+}
+
+@keyframes ds-drink-sip {
+  0% { opacity: 0; }
+  41% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes ds-mug-desk {
+  0% { opacity: 1; }
+  38% { opacity: 0; }
+  53% { opacity: 1; }
+}
+
+@keyframes ds-error-screen {
+  0% { opacity: 0; }
+  66% { opacity: 1; }
+  84% { opacity: 0; }
+}
+
+@keyframes ds-code-screen {
+  0% { opacity: 1; }
+  66% { opacity: 0; }
+  84% { opacity: 1; }
+}
+
+@keyframes ds-shock {
+  0% { opacity: 0; }
+  68% { opacity: 1; }
+  84% { opacity: 0; }
+}
+
+@keyframes ds-calm {
+  0% { opacity: 1; }
+  68% { opacity: 0; }
+  84% { opacity: 1; }
+}
+
+@keyframes ds-jump {
+  0% { transform: none; }
+  68% { transform: translateY(-3px); }
+  69.5% { transform: translateY(-2px); }
+  71% { transform: translateY(-1px); }
+  84% { transform: none; }
+}
 @keyframes blink {
   50% {
     opacity: 0;
@@ -611,5 +682,33 @@
 
   .ds-head {
     animation: bob 2.4s steps(1) infinite;
+  }
+
+  .ds-type,
+  .ds-drink-lift,
+  .ds-drink-sip,
+  .ds-mug-desk,
+  .ds-error-screen,
+  .ds-code-screen,
+  .ds-shock,
+  .ds-calm,
+  .ds-jump {
+    animation-duration: 14s;
+    animation-timing-function: steps(1, end);
+    animation-iteration-count: infinite;
+  }
+
+  .ds-type { animation-name: ds-type; }
+  .ds-drink-lift { animation-name: ds-drink-lift; }
+  .ds-drink-sip { animation-name: ds-drink-sip; }
+  .ds-mug-desk { animation-name: ds-mug-desk; }
+  .ds-error-screen { animation-name: ds-error-screen; }
+  .ds-code-screen { animation-name: ds-code-screen; }
+  .ds-shock { animation-name: ds-shock; }
+  .ds-calm { animation-name: ds-calm; }
+  .ds-jump { animation-name: ds-jump; }
+
+  .ds-error-flash {
+    animation: blink 400ms steps(1) infinite;
   }
 }
