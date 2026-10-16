@@ -12,10 +12,11 @@ export type TimelineStage = {
 };
 
 // Years exactly as in docs/PLANNING.md. Copy reference: docs/CONTENT.md.
+// Stage labels ("STAGE 1"...) come from the order of this list.
 export const timeline: TimelineStage[] = [
   {
     id: "marketing-video",
-    title: { en: "World 1: Marketing & Video", "pt-BR": "Mundo 1: Marketing e vídeo" },
+    title: { en: "Marketing & Video", "pt-BR": "Marketing e vídeo" },
     from: 2021,
     to: 2023,
     text: {
@@ -25,7 +26,7 @@ export const timeline: TimelineStage[] = [
   },
   {
     id: "front-end",
-    title: { en: "World 2: Front-end", "pt-BR": "Mundo 2: Front-end" },
+    title: { en: "Front-end", "pt-BR": "Front-end" },
     from: 2023,
     to: 2024,
     text: {
@@ -35,7 +36,7 @@ export const timeline: TimelineStage[] = [
   },
   {
     id: "college",
-    title: { en: "World 3: College", "pt-BR": "Mundo 3: Faculdade" },
+    title: { en: "College", "pt-BR": "Faculdade" },
     from: 2024,
     to: null,
     text: {
@@ -45,7 +46,7 @@ export const timeline: TimelineStage[] = [
   },
   {
     id: "mercuriochat",
-    title: { en: "World 4: MercurioChat", "pt-BR": "Mundo 4: MercurioChat" },
+    title: { en: "MercurioChat", "pt-BR": "MercurioChat" },
     from: 2024,
     to: 2025,
     text: {
@@ -57,23 +58,24 @@ export const timeline: TimelineStage[] = [
   },
   {
     id: "b2b-ecommerce",
-    title: { en: "World 5: B2B E-commerce", "pt-BR": "Mundo 5: E-commerce B2B" },
+    title: { en: "Develoci: E-commerce", "pt-BR": "Develoci: E-commerce" },
     from: 2025,
     to: "present",
     text: {
-      en: "Implementations on Salesforce B2B Commerce, Shopify and WooCommerce, with ERP and payment integrations, on teams that work in English.",
+      en: "Joined Develoci as a full-stack developer. I build and integrate e-commerce stores on platforms like Salesforce B2B Commerce and Shopify: storefronts, ERP and payment integrations, and the custom logic that keeps B2B operations running smoothly from catalog to checkout.",
       "pt-BR":
-        "Implementações em Salesforce B2B Commerce, Shopify e WooCommerce, com integrações de ERP e pagamentos, em equipes que trabalham em inglês.",
+        "Entrei na Develoci como desenvolvedor fullstack. Desenvolvo e integro lojas virtuais em plataformas como Salesforce B2B Commerce e Shopify: vitrines, integrações com ERP e meios de pagamento, e a lógica sob medida que mantém operações B2B rodando sem atrito do catálogo ao checkout.",
     },
   },
   {
     id: "own-projects",
-    title: { en: "World 6: Own Projects", "pt-BR": "Mundo 6: Projetos próprios" },
+    title: { en: "Own Projects", "pt-BR": "Projetos próprios" },
     from: 2026,
     to: null,
     text: {
-      en: "Lords of Logic and the launches that come next.",
-      "pt-BR": "Lords of Logic e os próximos lançamentos.",
+      en: "Alongside client work, I'm also building my own products: Lords of Logic is live, and more are on the way.",
+      "pt-BR":
+        "Em paralelo ao trabalho com clientes, também construo meus próprios produtos: o Lords of Logic já está no ar e outros estão a caminho.",
     },
   },
   {

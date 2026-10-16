@@ -169,8 +169,8 @@ export const skillCategories: SkillCategory[] = [
         name: same("Salesforce B2B Commerce (Core)"),
         icon: "warehouse",
         usage: {
-          en: "B2B store implementations with ERP and payment integrations.",
-          "pt-BR": "Implementações de lojas B2B com integrações de ERP e pagamentos.",
+          en: "B2B stores with ERP and payment integrations at Develoci.",
+          "pt-BR": "Lojas B2B com integrações de ERP e pagamentos na Develoci.",
         },
       },
       {
@@ -178,8 +178,8 @@ export const skillCategories: SkillCategory[] = [
         name: same("Shopify"),
         icon: "store",
         usage: {
-          en: "E-commerce implementations for teams that work in English.",
-          "pt-BR": "Implementações de e-commerce em equipes que trabalham em inglês.",
+          en: "Store builds and integrations at Develoci.",
+          "pt-BR": "Lojas e integrações na Develoci.",
         },
       },
       {
