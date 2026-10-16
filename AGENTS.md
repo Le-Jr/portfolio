@@ -90,7 +90,7 @@ Project skills live in `.agents/skills/`. Use them:
 - Already approved (October 16, 2026), beyond what the stack itself needs (Next.js, React, TypeScript, Tailwind, shadcn/ui and its primitives):
   - `pixelarticons` **2.4.2**, pinned, for all icons (see [ASSETS.md](docs/ASSETS.md#skill-icons)).
   - `@vercel/analytics` for Vercel Web Analytics (see [PROJECT.md](docs/PROJECT.md#success-metrics)).
-  - Fonts Press Start 2P and VT323 via `next/font/google`.
+  - Fonts Jersey 10 and Pixelify Sans via `next/font/google`.
 - When you ask, say what it is for, its size or footprint, and its license.
 
 ## Scope

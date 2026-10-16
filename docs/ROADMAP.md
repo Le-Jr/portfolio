@@ -20,9 +20,9 @@ If version 1 goes over **15 hours in total**, publish it as it is and move whate
 #### M1: copy, languages, palette, pixel art (Oct 17–19)
 
 - [ ] Review and adjust [CONTENT.md](CONTENT.md) in his own voice, in both languages
-- [ ] Confirm the palette in [STYLE_GUIDE.md](STYLE_GUIDE.md) and the body font (VT323 or a system sans)
+- [x] Redesign to the 32-bit arcade direction ([STYLE_GUIDE.md](STYLE_GUIDE.md)): boot screen, animated title screen, vertical career timeline, inventory item panel
 - [ ] Draw the final avatar to replace the placeholder sprite in `content/avatar.ts`, then run `npm run assets` ([ASSETS.md](ASSETS.md))
-- [ ] Check VT323 for readability on a real phone
+- [ ] Check Pixelify Sans body text on a real phone
 - [ ] Send the GitHub repository URL
 
 #### M2: build and publish (Oct 20–26)

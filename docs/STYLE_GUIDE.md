@@ -1,271 +1,251 @@
-# Style guide: 16-bit design system
+# Style guide: arcade design system
 
-The reference is the interface of Super Nintendo RPGs: dialog boxes with borders, menus with a blinking cursor, a world map, and saturated colors on a dark background. Lords of Logic uses a terminal look. The portfolio has its own identity, and each cartridge shows its own project's look.
+**Direction (updated October 16, 2026):** 32-bit / modern pixel art, in the spirit of late-90s arcade cabinets (Neo Geo-era fighting and action games). That means chunky marquee logos with banded gradients and hard outlines, color ramps instead of a tiny fixed palette, neon glow, CRT scanlines, night cityscapes, and animated sprites. The original planning doc asked for a Super Nintendo (16-bit) look; the owner moved the direction to this arcade style after reviewing version 1.
+
+Always true, whatever the style:
+
+- Content is real HTML text, never baked into images or `<canvas>`.
+- Nothing animated delays reading, and everything stops under `prefers-reduced-motion`.
+- Every text/background pair meets WCAG AA (4.5:1).
+- Pixel art is shown at integer scales with hard edges.
 
 ## Color
 
-### Palette (closed, 16 colors)
+### Palette
 
-These are the only colors on the site, except inside project cartridges, which use their project's look. Do not add colors, tints or opacity variants without updating this table.
+Ramps rather than single colors, so sprites and panels can be shaded. These are the only colors on the site, except inside project cartridge labels, which use their project's own look. The source of truth is `:root` in `app/globals.css`.
 
-| # | Name | Hex | Role |
-| --- | --- | --- | --- |
-| 1 | `night` | `#0f0e2a` | Dark background; light-theme text |
-| 2 | `dusk` | `#1c1a4a` | Dark surfaces (dialog boxes, cards) |
-| 3 | `cream` | `#f4ecd8` | Light background; dark-theme text |
-| 4 | `sand` | `#e6dcc2` | Light surfaces |
-| 5 | `haze` | `#a09cc8` | Muted text on dark |
-| 6 | `slate` | `#4a4680` | Muted text on light |
-| 7 | `yellow` | `#ffd23f` | Accent (dark): primary actions, cursor, highlights |
-| 8 | `cyan` | `#3fe0f0` | Accent (dark): links, secondary highlights |
-| 9 | `magenta` | `#ff5ccf` | Accent (dark): partnerships, special items |
-| 10 | `green` | `#5be36b` | Status (dark): online / success |
-| 11 | `red` | `#ff5a5f` | Status (dark): offline / error |
-| 12 | `gold` | `#7a5600` | Accent (light): primary actions |
-| 13 | `teal` | `#006b75` | Accent (light): links |
-| 14 | `plum` | `#a3006e` | Accent (light): partnerships |
-| 15 | `forest` | `#1d6b2a` | Status (light): online / success |
-| 16 | `crimson` | `#b3141a` | Status (light): offline / error |
+| Ramp | Colors |
+| --- | --- |
+| Night | `void` #07061a · `night` #0f0e2a · `dusk` #1c1a4a · `indigo` #2c2870 · `slate` #4a4680 · `haze` #a09cc8 |
+| Warm | `crimson` #b3141a · `red` #ff5a5f · `orange` #ff8a3d · `yellow` #ffd23f · `butter` #fff3b0 · `gold` #7a5600 |
+| Pink | `plum` #a3006e · `magenta` #ff5ccf · `pink` #ffb3e6 |
+| Cool | `teal` #006b75 · `ocean` #00a3c4 · `cyan` #3fe0f0 · `ice` #b8fbff |
+| Green | `forest` #1d6b2a · `green` #5be36b |
+| Neutral | `cream` #f4ecd8 · `sand` #e6dcc2 · `white` #ffffff |
 
-The light theme keeps the same accent hues, darkened so they stay readable on cream. The bright accents (7–11) may still be used as **fills and borders** in light mode, never as text on light backgrounds.
+**Sprite ramps.** Character and prop sprites (avatar, dev scene) may also use these material ramps. They are only for pixel art, never for UI:
+
+| Material | Colors |
+| --- | --- |
+| Skin | #f2c29b · #c98a64 |
+| Hair | #a0705a · #6b3e2e · #3a2218 |
+| Wood | #a87e66 · #8d6650 · #6b4a3a |
+| Steel | #8a90b0 · #3b3f5c |
+| Accent | #ff8a8d (plant pot highlight) · #8a3a3a (mouth) |
+
+### Theme tokens
+
+Components use semantic tokens only. Fixed palette names (`bg-void`, `text-cyan`…) are allowed only on surfaces that are always dark in both themes: the title screen, the boot screen, the HUD, the footer and cartridges.
+
+| Token | Dark (default) | Light |
+| --- | --- | --- |
+| `--bg` | night | cream |
+| `--bg-deep` | void | sand |
+| `--surface` | dusk | white |
+| `--surface-raised` | indigo | sand |
+| `--text` | cream | night |
+| `--text-muted` | haze | slate |
+| `--border` | void | night |
+| `--bevel-light` / `--bevel-dark` | slate / void | white / haze |
+| `--primary` | yellow | gold |
+| `--on-primary` | void | cream |
+| `--link` | cyan | teal |
+| `--special` | magenta | plum |
+| `--success` | green | forest |
+| `--danger` | red | crimson |
+| `--glow-strength` | 1 | 0 (no neon glow on light backgrounds) |
 
 ### Measured contrast
 
 | Pair | Ratio |
 | --- | --- |
-| `cream` on `night` | 15.97 |
-| `cream` on `dusk` | 13.76 |
-| `haze` on `night` / `dusk` | 7.24 / 6.24 |
-| `yellow` on `night` / `dusk` | 13.02 / 11.22 |
-| `cyan` on `night` / `dusk` | 11.76 / 10.13 |
-| `magenta` on `night` / `dusk` | 6.88 / 5.93 |
-| `red` on `night` / `dusk` | 6.16 / 5.31 |
-| `night` on `cream` / `sand` | 15.97 / 13.78 |
-| `slate` on `cream` / `sand` | 7.20 / 6.20 |
-| `gold` on `cream` / `sand` | 5.65 / 4.87 |
-| `teal` on `cream` / `sand` | 5.31 / 4.58 |
-| `plum` on `cream` / `sand` | 6.41 / 5.53 |
-| `crimson` on `cream` / `sand` | 5.88 / 5.07 |
-| `night` on `yellow` (dark-theme button label) | 13.02 |
-| `cream` on `gold` (light-theme button label) | 5.65 |
+| cream on dusk / indigo | 13.76 / 10.85 |
+| haze on dusk / indigo | 6.24 / 4.92 |
+| yellow / cyan / magenta / green / red on dusk | 11.22 / 10.13 / 5.93 / 9.76 / 5.31 |
+| void on yellow / orange (primary button bands) | 13.85 / 8.53 |
+| void on cyan / ocean (secondary button bands) | 12.51 / 6.70 |
+| cream on void | 16.99 |
+| night on white / sand | 18.81 / 13.78 |
+| slate on white / sand | 8.47 / 6.20 |
+| gold / teal / plum / forest / crimson on white | 6.65 / 6.25 / 7.55 / 6.59 / 6.93 |
+| gold / teal / plum / forest on sand | 4.87 / 4.58 / 5.53 / 4.82 |
 
-All pairs meet WCAG AA for normal text (4.5:1).
+### Theme behavior
 
-### Theme tokens
-
-Components use **semantic tokens only**, never palette names or hex values.
-
-```css
-:root {
-  /* palette */
-  --night: #0f0e2a;  --dusk: #1c1a4a;  --cream: #f4ecd8; --sand: #e6dcc2;
-  --haze: #a09cc8;   --slate: #4a4680;
-  --yellow: #ffd23f; --cyan: #3fe0f0;  --magenta: #ff5ccf;
-  --green: #5be36b;  --red: #ff5a5f;
-  --gold: #7a5600;   --teal: #006b75;  --plum: #a3006e;
-  --forest: #1d6b2a; --crimson: #b3141a;
-}
-
-/* Dark is the default theme. */
-:root,
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --color-bg: var(--night);
-  --color-surface: var(--dusk);
-  --color-text: var(--cream);
-  --color-text-muted: var(--haze);
-  --color-border: var(--cream);
-  --color-border-inner: var(--haze);
-  --color-primary: var(--yellow);        /* text, cursor, primary button fill */
-  --color-on-primary: var(--night);      /* text on primary fill */
-  --color-link: var(--cyan);
-  --color-special: var(--magenta);
-  --color-success: var(--green);
-  --color-danger: var(--red);
-  --color-focus: var(--cyan);
-}
-
-:root[data-theme="light"] {
-  color-scheme: light;
-  --color-bg: var(--cream);
-  --color-surface: var(--sand);
-  --color-text: var(--night);
-  --color-text-muted: var(--slate);
-  --color-border: var(--night);
-  --color-border-inner: var(--slate);
-  --color-primary: var(--gold);
-  --color-on-primary: var(--cream);
-  --color-link: var(--teal);
-  --color-special: var(--plum);
-  --color-success: var(--forest);
-  --color-danger: var(--crimson);
-  --color-focus: var(--teal);
-}
-```
-
-`data-theme` is always set on `<html>` before first paint by the inline theme script (see [AGENTS.md](../AGENTS.md)). That script resolves the first visit from `prefers-color-scheme`, so no media query is needed in CSS.
-
-Map the semantic tokens into Tailwind's theme (for example `bg-bg`, `text-text`, `border-border`) and disable Tailwind's default colors.
+- Dark is the default; the light theme is an "arcade in daylight" version (cream and white surfaces, darker accents, no glow).
+- The **title screen, boot screen, HUD, footer and cartridges stay dark in both themes.** They are "screens" and physical objects, like a cabinet monitor.
+- The theme is applied before first paint by the inline script in `<head>` (see [AGENTS.md](../AGENTS.md)).
 
 ## Typography
 
 | Role | Font | Use |
 | --- | --- | --- |
-| Display | **Press Start 2P** | Titles, section headings, buttons, menu items, short labels. Never body text. |
-| Body | **VT323** | Paragraphs, timeline text, tooltips, descriptions |
-| Body fallback | System sans-serif (`system-ui, sans-serif`) | Fallback stack while VT323 loads, and the swap-in if VT323 fails the phone check |
+| Display | **Jersey 10** | The logo, section titles, big numbers, stage titles, item names |
+| UI and body | **Pixelify Sans** (variable 400–700) | Body text, buttons, labels, chips, HUD |
 
-Both fonts are on Google Fonts under the SIL Open Font License. Load them with `next/font/google` (self-hosted at build, no extra dependency).
+Both are Google Fonts under the SIL Open Font License, self-hosted with `next/font/google`. Pixelify Sans is a modern pixel face that stays readable at body sizes; Jersey 10 is a condensed arcade marquee face.
 
-Decision: the body font is **VT323** (the planning doc offers "VT323 or a common sans"). It gets a readability check on a real phone in M1 (see [ROADMAP.md](ROADMAP.md)); if it fails, switch to the system sans and use its size scale below.
+### Size scale (Tailwind tokens)
 
-### Size scale
+| Token | Size | Use |
+| --- | --- | --- |
+| `text-logo-l` / `text-logo` | 128 / 72 px | Title-screen logo (desktop / mobile) |
+| section titles | 80 / 48 px | `SectionTitle` (desktop / mobile) |
+| `text-title-l` | 56 px | Big headings inside sections |
+| `text-title` | 40 px | Stage titles, cartridge names |
+| `text-title-s` | 28 px | Category names, item names, years |
+| `text-body-l` | 22 px | Lead paragraphs |
+| `text-body` | 19 px | Body text (18 px base on mobile) |
+| `text-body-s` | 17 px | Secondary text |
+| `text-label` | 14 px | Labels and chips, bold, uppercase, tracked |
 
-Press Start 2P is drawn on an 8 px grid. Use multiples of 8 so glyphs stay crisp.
+Body text never goes below 17 px. Labels in caps use letter-spacing (0.08–0.35em).
 
-| Token | Font | Mobile | Desktop | Use |
-| --- | --- | --- | --- | --- |
-| `--text-display-xl` | Press Start 2P | 24px | 40px | Start screen title |
-| `--text-display-l` | Press Start 2P | 16px | 24px | Section titles |
-| `--text-display-m` | Press Start 2P | 16px | 16px | Buttons, menu items, card titles |
-| `--text-display-s` | Press Start 2P | 8px | 8px | Tiny labels (level, badge). Never more than two words. |
-| `--text-body-l` | VT323 | 24px | 28px | Start subtitle, lead paragraphs |
-| `--text-body` | VT323 | 22px | 24px | Body text |
-| `--text-body-s` | VT323 | 20px | 20px | Tooltips, captions |
+### Arcade text
 
-VT323 is small for its point size, so body sizes are higher than usual. **Body text never goes below 20px.** If the body font changes to a system sans, rescale to 16 / 18 / 20 px.
-
-Line height: 1.5 for display text, 1.3 for VT323, 1.5 for sans. No letter-spacing on pixel fonts, and no synthetic bold on Press Start 2P.
-
-## Spacing and borders
-
-- Spacing unit: **4 px**. Use multiples of 4 for padding, gaps and margins.
-- Borders are solid and in whole pixels: 2 px or 4 px. No `border-radius` except the 1-step "pixel" corner used on dialog boxes (see below).
-- No blur, no soft shadows, no gradients. A hard 4 px offset shadow in `--color-bg` is allowed on cards and buttons.
+`.arcade-text` is the marquee treatment: Jersey 10 in caps, a banded gradient fill (butter, yellow, orange, red), a 2 px void outline and a stepped plum/void extrusion. `.arcade-text-cool` swaps the fill for the ice-to-teal ramp (used on "JUNIOR"). In the light theme, `.section-title` drops the gradient for solid night ink with a haze shadow, so titles stay readable on cream.
 
 ## Components
 
-Each component lists its look, behavior and accessibility rules. Copy comes from [CONTENT.md](CONTENT.md).
+### HUD
 
-### RPG dialog box
+A fixed top bar (64 px, void, 3 px bottom border) on every screen:
 
-The base container for text.
+- Left: `1P` chip and "LEANDRO JR", linking to the title screen.
+- Center (≥ 768 px): `STAGE 0X` and the name of the section on screen, tracked with an IntersectionObserver.
+- Right: the PAUSE button, which opens the pause menu.
 
-- `--color-surface` background, **double border**: outer 4 px `--color-border`, 2 px gap of `--color-surface`, inner 2 px `--color-border-inner`.
-- Pixel corners: clip the outer corners by one border step (for example with `clip-path` or stacked box-shadows), instead of `border-radius`.
-- Padding 16 px (mobile) / 24 px (desktop).
-- Optional **typing effect** that reveals the text letter by letter. Rules:
-  - The full text is in the DOM from the start (visually revealed, not injected), so screen readers and search engines get it.
-  - Click, tap or Enter completes the text at once.
-  - Off under `prefers-reduced-motion`.
-  - Never on long paragraphs; use it only on short lines (one or two sentences).
+`scroll-padding-top` keeps focused headings clear of it.
 
-### Blinking menu cursor
+### Boot screen
 
-- A right-pointing triangle (▶) in `--color-primary`, drawn as a pixel sprite or CSS, placed left of the active menu item.
-- Blinks in steps (on/off, no fade), around 2 times per second.
-- The active item is the one with focus or hover. Keyboard: Up/Down (or Left/Right in horizontal menus) move the cursor, Enter selects.
-- The cursor is decorative (`aria-hidden`). Focus is also shown with a 2 px `--color-focus` outline so it is visible without the cursor.
-- Under reduced motion: the cursor is shown but does not blink.
+An arcade boot sequence over the title screen, **once per browser session**:
 
-### Pause menu
+1. "LJ ARCADE SYSTEM", then three system checks with green `OK`s.
+2. A stepped loading bar.
+3. The logo drops in with the tagline.
 
-The fixed navigation.
+It lasts about 2.6 s. Any key, click or tap skips it. It never appears with reduced motion or without JavaScript (the `<head>` script decides by adding `boot-active`), and CSS hides it after 3.4 s even if React never runs. It is `aria-hidden`; the real title is the HTML `<h1>` underneath.
 
-- Fixed to a corner (top right on desktop). On mobile, a "PAUSE" button opens it as a full-screen overlay.
-- Contents: one item per section (from `menu.*`), "skip to summary", then the settings group (theme and language toggles).
-- Uses the dialog box style and the blinking cursor.
-- Accessibility: a `<nav>` with a list of links to section anchors. The mobile overlay traps focus while open, closes on Escape and on selection, and returns focus to the "PAUSE" button.
-- Selecting an item scrolls to the section (instant scroll under reduced motion) and moves focus to its heading.
+### Title screen
 
-### Character select card
+Always dark. Layers, back to front:
 
-The About section.
+- **Skyline**: banded night sky with a magenta horizon, twinkling stars, a pixel moon, and two building layers with lit windows drifting at different speeds (parallax). It is generated from a fixed seed, so it is the same pixel art on every build.
+- **Logo**: "LEANDRO" in the warm ramp and "JUNIOR" in the cool ramp, the `FULL STACK DEVELOPER` tagline between two cyan rules, and a blinking `INSERT COIN`.
+- **Dev scene**: the developer at his desk (see [Pixel art](#pixel-art)), shown at 3x / 4x / 5x.
+- **Buttons**: "PRESS START" (primary, pulsing frame) and the contact button (secondary). Both are visible on the first screen.
 
-- Avatar in a framed slot on the left (on top on mobile), shown at an integer scale.
-- To the right: name, class, specialty, attributes list and bio, in a dialog box.
-- Attributes render as a list. If values are set later, show them as RPG-style levels (for example "LV 3"), never as percentages.
+### Panels
 
-### World map stage
-
-The Timeline.
-
-- A path of stages connected by a dotted pixel line, top to bottom on mobile and left to right (wrapping) on desktop. This is a static layout, not a walkable map (that is version 2).
-- Each stage: a node (map tile icon), world number and title, and years. Selecting a stage opens its text in a dialog box beneath it.
-- The offline stage (MercurioChat) shows the "powered off" icon and an "Offline" badge in `--color-danger`, plus visually dimmed node art. The text stays full-contrast.
-- The last stage ("???") is styled as locked-looking but is **not locked**: it opens and links to Partnerships.
-- Keyboard: stages are buttons in order; arrow keys move between them, Enter opens. Use `aria-expanded` on each stage button.
-
-### Inventory slot
-
-The Skills section.
-
-- Grid of square slots grouped by category, each category with its own heading.
-- Each slot: a framed square with the item's pixel glyph (24 px grid shown at 2x = 48 px), and the item name as HTML text below it.
-- Glyphs are generic pixelarticons, not brand logos (see [ASSETS.md](ASSETS.md#skill-icons) for why). Color: `--color-link` by default; the slot border uses the category color: Front-end `--color-link`, Back-end `--color-primary`, Platforms `--color-special`, Creative & Strategy `--color-success`.
-- Hover, focus or tap opens a small dialog-box **tooltip** with "Where I use it" and the usage text. If the usage text is still TODO, the slot has no tooltip.
-- The slot is a `<button>` with `aria-describedby` pointing at the tooltip. Arrow keys move through the grid; Enter or Space toggles the tooltip; Escape closes it; tapping outside closes it.
-- No percentage bars. Category levels are optional (see CONTENT.md).
-
-### Cartridge card
-
-The Projects section.
-
-- Shaped like a SNES cartridge: a body with a label area for the project art and a grip ridge at the top.
-- The label area uses the project's own look (Lords of Logic: terminal style). Everything outside the label uses the portfolio palette.
-- Below the label: name, genre, description, "built with", and buttons ("PLAY NOW", optional "BEHIND THE SCENES").
-- "PLAY NOW" is a link (`<a target="_blank" rel="noopener">`) styled as a button, and fires the `play_click` analytics event.
-- **Coming soon** variant: grayed-out label with "???", the "COMING SOON" label, no buttons.
-- Cards sit in a horizontal row on desktop and stack on mobile. Arrow keys move between cartridges.
+`.panel` is the base container: a 3 px outline, beveled inner edges (light top-left, dark bottom-right), a banded fill (raised strip on top, deep strip at the bottom) and a hard 6 px drop shadow. `.panel-glow` adds a neon border and glow in the color set by `--glow` (no glow in the light theme).
 
 ### Buttons
 
-- Primary: `--color-primary` fill, `--color-on-primary` text, 4 px border in `--color-border`, hard offset shadow. Pressed state shifts the button by the shadow offset and removes the shadow.
-- Secondary: `--color-surface` fill, `--color-text` text, same border.
-- Text in the pixel font, in caps. Minimum touch target 44 × 44 px.
+`.arcade-button` is a chunky cabinet button: Pixelify Sans bold caps, a 3 px void outline, a two-band gradient, an inner highlight and a 6 px 3D base. Hover lifts it 2 px, and pressing it sinks it into the base.
 
-### Theme, language and sound toggles
+- Primary: yellow / orange bands.
+- Secondary: cyan / ocean bands.
+- Ghost: surface fill with bevels (the PAUSE button).
 
-- Styled as options in a game "settings" menu: a label and a two-option switch, for example `THEME  ▶DARK  LIGHT`, `LANGUAGE  ▶EN  PT-BR` and `SOUND  ▶OFF  ON`.
-- Placed in the corner, inside the pause menu on mobile and next to it on desktop.
-- Theme toggle: a `<button>` with `aria-pressed`, or a two-option radio group. It updates `data-theme` immediately and saves the choice (see AGENTS.md).
-- Language toggle: links to the other locale's URL (`/` and `/pt-BR/`), with `hreflang` and `lang` set on each.
-- Sound toggle: a `<button>` with `aria-pressed`, showing the `volume-x` / `volume-2` glyph next to the label. Off by default; the choice is saved (see [Sound](#sound)).
+The minimum height is 52 px (44 px for the HUD button).
 
-## Pixel art rules
+### Chips
 
-- Every pixel-art image or icon is shown at an **integer scale** (2x, 3x, 4x) of its source size. Never at fractional sizes, and never resized by CSS to "fit".
-- **Bitmaps** (avatar, cartridges, map tiles, favicon): PNG at native size, no anti-aliasing (hard edges, transparent background), always with `image-rendering: pixelated`.
-- **Icons** (pixelarticons): inline SVG on a 24×24 grid, rendered at 24, 48 or 72 px only, with `shape-rendering="crispEdges"`, colored with `currentColor`. `image-rendering` does not apply to inline SVG; `crispEdges` does the same job. Decorative icons get `aria-hidden="true"`.
-- Use explicit `width` and `height` attributes equal to the scaled size to avoid layout shift.
-- Do not use `next/image` optimization on pixel art (static export disables it anyway); use plain `<img>` or `next/image` with `unoptimized`.
-- Pixel art uses palette colors only, except project cartridge labels.
+`.chip` is a small outlined label: bold caps, tracked, colored with `currentColor`. It is used for stage numbers, statuses (`NOW PLAYING`, `OFFLINE`), categories and HUD tags.
+
+### Section titles
+
+Every section opens with a `STAGE 0X` line (a cyan rule plus a tracked label) over a big arcade title.
+
+### Player select (About)
+
+- A **selected** card: the portrait at 7x on a banded sunset backdrop with scanlines, framed by a glowing panel, with the name plate below.
+- Under it, a row of character slots: Leandro picked, then a `2P?` slot and locked `?` slots, hinting at the partnership.
+- To the right, a panel with class, specialty, attribute chips (one accent each) and the bio.
+
+### Career timeline
+
+Stages are stacked **one under another, top to bottom, in time order**, linked by a dashed vertical track like a level path.
+
+- Each stage is a square node (map pin, power-off for MercurioChat, `?` for the next stage) next to a panel.
+- The panel holds a `STAGE N` chip, the years in Jersey 10, an arcade-text title and the text, always visible.
+- The current stage (2025–present) gets a `NOW PLAYING` chip and a yellow glow. MercurioChat gets a red `OFFLINE` chip. The last stage ("???") glows magenta and links to Partnerships.
+- Panels fade in as they scroll into view (stepped, 320 ms), only when motion is OK.
+
+### Inventory
+
+- A grid of 96 px+ slots per category. Each slot is a beveled `surface-raised` square with the glyph at 2x in the category accent (Front-end cyan, Back-end yellow, Platforms magenta, Creative green) and the name below.
+- Hover, focus or tap **selects** a slot (`aria-pressed`), with a glowing accent border.
+- The selected item shows in an **item description panel**: sticky beside the grid on ≥ 1024 px, inline under the selected item's category on smaller screens. It holds the glyph at 3x, a category chip, the name and "Where I use it".
+- **Nothing floats over the grid.** This replaced the hover tooltip from version 1.
+- Screen readers get the usage text through `aria-describedby` on the slot. The panel is a visual copy (`aria-hidden`).
+- Arrow keys move between slots.
+
+### Cartridges
+
+Big dark arcade carts: plastic shell with grip ridges, and a label window with scanlines that shows the project's own look (Lords of Logic: a green-on-void terminal with a blinking cursor). Below the label: arcade-text name, genre, built with, description and "PLAY NOW". The coming-soon cart shows "???" on a static-noise label.
+
+### Co-op screen (Partnerships)
+
+- Two player panels: `1P · LEANDRO` (cyan) + `2P · YOU` (magenta, with a blinking "PRESS START TO JOIN").
+- A `CO-OP MODE` result line.
+- The four steps as `ROUND 1–4` panels.
+- A glowing contact panel with the email and LinkedIn buttons.
+
+### Pause menu
+
+The PAUSE button in the HUD opens a panel:
+
+- Sections listed in Jersey 10 caps, with the blinking cursor.
+- "Skip to summary".
+- Settings: theme, language and sound, with the selected option marked by the cursor.
+
+On mobile it fills the screen below the HUD. Escape closes it, focus is trapped while it is open and returns to the PAUSE button, and arrow keys move the cursor.
+
+### Credits (footer)
+
+Always dark with scanlines:
+
+- "THANK YOU FOR PLAYING".
+- An arcade-text "CREDITS" title.
+- Links, and credits for icons and fonts.
+- A blinking "CONTINUE?" that jumps back to the title screen.
+
+## Pixel art
+
+- Sprites are drawn as SVG rects on a pixel grid (`shape-rendering="crispEdges"`) and shown only at **integer scales**. Bitmaps (favicons, Open Graph image) are generated by `npm run assets` with nearest-neighbor upscaling.
+- **Portrait**: 32×32, with ramps for hair, skin and hoodie and a dark outline (`content/avatar.ts`). It is a placeholder until the final avatar exists.
+- **Dev scene**: 96×64 (`components/dev-scene.tsx`).
+  - Contents: the developer in a hoodie on an office chair, typing at a desk; a monitor with colored code lines; a keyboard, a plant and a steaming mug.
+  - Animation: the hands alternate (typing), code lines type out and clear in sequence, the cursor and power LED blink, the head bobs, and steam rises.
+- **Icons**: pixelarticons (24×24 grid) at 1x/2x/3x, colored with `currentColor`. No brand logos (see [ASSETS.md](ASSETS.md#skill-icons)).
+- **Scanlines**: `.scanlines` overlays 1 px dark lines every 3 px on always-dark screens.
 
 ## Motion
 
-Allowed, and short:
-
 | Effect | Where | Spec |
 | --- | --- | --- |
-| Blinking cursor | Menus | Step on/off, ~500 ms per state |
-| Pulsing "PRESS START" | Start screen | Step blink or 2-step brightness change, ~1 s cycle |
-| Typing effect | Short dialog lines | ~30 ms per character, skippable |
-| Screen transition | Opening a dialog / stage | ≤ 200 ms, stepped (for example 4 frames), no easing curves |
+| Boot sequence | First visit per session | ≈2.6 s, skippable, stepped |
+| Logo drop-in | Title screen, boot | 600 ms, `steps(6)` |
+| PRESS START pulse | Title screen | Frame outline on/off, 1.2 s |
+| Blink | INSERT COIN, cursors, JOIN, CONTINUE | 1–1.2 s, `steps(1)` |
+| Skyline drift | Title screen | 180 s / 100 s linear loops (parallax) |
+| Twinkle | Stars, windows | 3 s, `steps(3)`, staggered |
+| Sprite loops | Dev scene | Typing at 260 ms per frame, code lines 6 s cycle |
+| Scroll reveal | Timeline, panels | 320 ms, `steps(4)`, once |
+| Screen-in | Pause menu | 160 ms wipe, `steps(4)` |
+| Button press | Buttons | 80 ms, `steps(2)` |
 
 Rules:
 
-- Nothing may delay reading. Text is always readable without waiting for an animation.
-- Use `steps()` timing, not smooth easing, to keep the 16-bit feel.
-- Under `prefers-reduced-motion: reduce`: no typing effect, no blinking, no pulsing, no transitions, instant scrolling.
-- No parallax, no scroll-jacking, no autoplaying video.
+- Prefer `steps()` timing for the pixel feel. The only smooth (linear) motion allowed is the slow skyline drift.
+- Under `prefers-reduced-motion: reduce`, everything above is off: no boot screen, no reveals (content is simply visible), no blinking, drifting or sprite loops, and instant scrolling.
+- No scroll-jacking, no autoplaying video.
 
 ## Sound
 
-Short menu sound effects are part of version 1. Music is version 2.
-
-- **Off by default.** Sound plays only after the visitor turns it on with the sound toggle. Never autoplay.
-- Effects: cursor move (when the menu cursor changes item) and select (Enter, tap or click on a menu item, stage, slot or cartridge button). Nothing else.
-- Synthesized with the **Web Audio API** (square-wave blips, under 100 ms, low volume) instead of audio files: no assets to source or license, no dependency, nothing to download. Create the `AudioContext` on the click that turns sound on, as browsers require a user gesture.
-- The setting persists in `localStorage` (in try/catch), like the theme.
-- Sound never carries information that isn't also shown visually.
-- Turning sound on is a separate choice from reduced motion; `prefers-reduced-motion` does not change sound.
+- **Off by default.** The toggle is in the pause menu, and the choice persists in `localStorage` (in try/catch).
+- Short square-wave blips synthesized with the Web Audio API: cursor move and select. No audio files, no music in version 1.
+- Sound never carries information that is not also shown visually.

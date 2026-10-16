@@ -1,6 +1,6 @@
 # Project scope
 
-A personal portfolio for **Leandro Junior** with a Super Nintendo (16-bit) look. It is the first public portfolio, built to introduce who Leandro is and to **start SaaS partnership conversations** with companies and influencers. Version 1 launches with one project, **Lords of Logic**, and is designed to grow with each new product.
+A personal portfolio for **Leandro Junior** with a 32-bit arcade look (modern pixel art, in the spirit of Neo Geo-era cabinets). The planning doc started from a Super Nintendo (16-bit) look; the owner moved it to the arcade direction on October 16, 2026. It is the first public portfolio, built to introduce who Leandro is and to **start SaaS partnership conversations** with companies and influencers. Version 1 launches with one project, **Lords of Logic**, and is designed to grow with each new product.
 
 ## Goal
 
@@ -28,23 +28,23 @@ Gamification comes after that, for those who want to explore. A "skip to summary
 
 ## Structure
 
-Version 1 is a **single scrolling page**. Each section imitates a game screen. A fixed "pause menu" jumps to any section. Nothing is locked: everything is reachable from the start.
+Version 1 is a **single scrolling page**. Each section imitates a game screen, under a fixed arcade HUD (player tag, current stage, PAUSE button). The pause menu jumps to any section. On the first visit of a session, a short, skippable arcade boot screen plays before the title screen (never with reduced motion). Nothing is locked: everything is reachable from the start.
 
 | # | Section | Game metaphor | Content |
 | --- | --- | --- | --- |
-| 1 | Start | Title screen, "PRESS START" | Name, one line about what he does, a "play" button (scrolls down) and a "talk to me" button |
-| 2 | About | Character select | Pixel-art avatar, class ("Full-Stack Dev"), attributes and a short paragraph |
-| 3 | Timeline | World map | Each stage is a career moment, in order, with a short text when opened |
+| 1 | Start | Arcade title screen, "PRESS START" | Logo-styled name with "FULL STACK DEVELOPER" under it, one line about what he does, an animated pixel-art scene of him coding at his desk over a night skyline, a "play" button (scrolls down) and a "talk to me" button |
+| 2 | About | Player select | Pixel-art portrait on a "selected" card, a character grid with an open 2P slot, class ("Full-Stack Dev"), attributes and a short paragraph |
+| 3 | Timeline | Career mode | Stages stacked top to bottom in time order along a level path; each stage shows its years, title and text, with the current one marked "NOW PLAYING" |
 | 4 | Skills | Inventory and status bar | Stack grouped by category, with items (and optional RPG levels per category) |
 | 5 | Projects | Cartridge select | One cartridge per project. In version 1: Lords of Logic and a "coming soon" cartridge |
-| 6 | Partnerships | "PLAYER 2, PRESS START" | The partnership offer, how it works, and contact |
-| 7 | Footer | Credits screen | Links (GitHub, LinkedIn, email) and "made by" |
+| 6 | Partnerships | "PLAYER 2, PRESS START" co-op screen | 1P (Leandro) + 2P (the visitor), the offer, how it works as four rounds, and contact |
+| 7 | Footer | Credits screen | "Thank you for playing", links (GitHub, LinkedIn, email), "made by" and credits |
 
 All copy is in [CONTENT.md](CONTENT.md). Visual direction is in [STYLE_GUIDE.md](STYLE_GUIDE.md).
 
 ### Section notes
 
-- **Skills:** no percentage bars ("React 85%"); they mean nothing to someone hiring. Use RPG levels per category, or just the items. Each item shows a pixel-art glyph, like an RPG item, with the name underneath. Hovering or tapping opens a short dialog box saying where Leandro uses it. The planning doc asked for pixelated brand logos; most of these brands forbid modified logos, so version 1 uses generic glyphs instead (see [ASSETS.md](ASSETS.md#skill-icons)).
+- **Skills:** no percentage bars ("React 85%"); they mean nothing to someone hiring. Use RPG levels per category, or just the items. Each item shows a pixel-art glyph, like an RPG item, with the name underneath. Hovering, focusing or tapping an item shows it in an item description panel saying where Leandro uses it. The planning doc asked for pixelated brand logos; most of these brands forbid modified logos, so version 1 uses generic glyphs instead (see [ASSETS.md](ASSETS.md#skill-icons)).
 - **Timeline:** MercurioChat is currently offline and shows a pixel-art "powered off" icon on its stage. The last stage is "???", an invitation to build together.
 - **Projects:** the portfolio has its own identity, but each cartridge shows its own project's look (Lords of Logic uses a terminal aesthetic). The "coming soon" cartridge reserves space for upcoming products, including the Amigo Secreto project, without changing the structure.
 - **Partnerships:** how revenue is split (revenue share, equity, fixed fee plus percentage) stays open and is discussed in conversation. **It does not appear on the site.**
