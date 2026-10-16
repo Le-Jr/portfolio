@@ -11,8 +11,8 @@ Where pixel art comes from, in order of cost (from the planning doc): free packs
 | Asset | Source size | Displayed at | Used in | Source | License |
 | --- | --- | --- | --- | --- | --- |
 | Avatar (portrait) | 32×32 placeholder (`content/avatar.ts`) | 7x (224 px) on the player-select card, 1x in the character grid | About, favicons, Open Graph image | Self-made. TODO: replace the placeholder with the final avatar, then run `npm run assets` | Own work |
-| Dev scene (developer coding at a desk) | 96×64 sprite grid (`components/dev-scene.tsx`) | 3x / 4x / 5x | Title screen | Self-made, drawn as SVG rects, animated with CSS | Own work |
-| Sunset skyline (with a striped setting sun) | Generated SVG (fixed seed), `components/skyline.tsx` | Fills the title screen | Title screen | Self-made generator | Own work |
+| Dev scene (developer coding at a desk; sips coffee, gets scared by an error) | 96×64 sprite grid (`components/dev-scene.tsx`) | 3x / 4x / 5x | Title screen | Self-made, drawn as SVG rects, animated with CSS | Own work |
+| Sunset skyline (with a striped setting sun) | Generated SVG (fixed seed): `lib/skyline.ts`, served as `/skyline-far.svg` and `/skyline-near.svg` | Fills the title screen | Title screen | Self-made generator | Own work |
 | Skill icons (one per item, 20 items, see below) | 24×24 vector on a pixel grid | 2x (48 px) | Skills (inventory slots) | pixelarticons | MIT |
 | "Powered off" icon | 24×24 | 2x (48 px) | Timeline, World 4 (MercurioChat) | pixelarticons `power-off` | MIT |
 | UI icons: theme, language, sound, email, map pin, "???" | 24×24 | 1x or 2x | Settings toggles, contact, timeline | pixelarticons `moon`, `sun`, `languages`, `volume-2`, `volume-x`, `mail`, `map-pin`, `circle-question` | MIT |
