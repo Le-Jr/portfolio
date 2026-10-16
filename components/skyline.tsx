@@ -1,53 +1,10 @@
 import type { CSSProperties } from "react";
 
+import { HEIGHT, random, skylineLayers, TILE, type SkylineLayerName } from "@/lib/skyline";
+
 // Sunset city behind the title screen: banded dusk sky, a striped setting
-// sun, the first stars and two drifting building layers. Generated from a fixed seed, so every build
-// renders the same pixel art. Drift and twinkle stop under reduced motion.
-
-const TILE = 640; // sprite units per repeating tile; each layer holds two tiles
-const HEIGHT = 140;
-
-function random(seed: number) {
-  let state = seed;
-  return () => {
-    state = (state + 0x6d2b79f5) | 0;
-    let t = Math.imul(state ^ (state >>> 15), 1 | state);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-type Building = { x: number; width: number; height: number };
-type Light = { x: number; y: number; color: string; twinkle: boolean };
-
-function buildLayer(seed: number, minHeight: number, maxHeight: number, windowColors: string[]) {
-  const next = random(seed);
-  const buildings: Building[] = [];
-  const windows: Light[] = [];
-  let x = 0;
-  while (x < TILE) {
-    const width = Math.min(10 + Math.floor(next() * 22), TILE - x);
-    const height = minHeight + Math.floor(next() * (maxHeight - minHeight));
-    buildings.push({ x, width, height });
-    for (let wy = HEIGHT - height + 4; wy < HEIGHT - 6; wy += 4) {
-      for (let wx = x + 2; wx < x + width - 2; wx += 3) {
-        if (next() < 0.32) {
-          windows.push({
-            x: wx,
-            y: wy,
-            color: windowColors[Math.floor(next() * windowColors.length)],
-            twinkle: next() < 0.12,
-          });
-        }
-      }
-    }
-    x += width + (next() < 0.3 ? 2 : 0);
-  }
-  return { buildings, windows };
-}
-
-const far = buildLayer(7, 40, 78, ["#8c3b1f"]);
-const near = buildLayer(23, 22, 56, ["#ffb000", "#4fc3d9", "#ff6a4d", "#ffe08a"]);
+// sun, the first stars and two drifting building layers (generated in
+// lib/skyline.ts). Drift and twinkle stop under reduced motion.
 
 const starRandom = random(99);
 const stars = Array.from({ length: 45 }, (_, index) => ({
@@ -57,51 +14,35 @@ const stars = Array.from({ length: 45 }, (_, index) => ({
   twinkle: index % 4 === 0,
 }));
 
-function Layer({
-  layer,
-  fill,
-  className,
-}: {
-  layer: ReturnType<typeof buildLayer>;
-  fill: string;
-  className: string;
-}) {
-  // Two copies side by side so translateX(-50%) loops seamlessly.
+function Layer({ name, className }: { name: SkylineLayerName; className: string }) {
+  const twinkles = skylineLayers[name].windows.filter((light) => light.twinkle);
+  // The static file holds two tiles side by side, so translateX(-50%) loops
+  // seamlessly; only the twinkling windows are drawn inline on top.
   return (
     <div className={`absolute bottom-0 left-0 ${className}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element -- pixel art, no optimization wanted */}
+      <img src={`/skyline-${name}.svg`} alt="" className="pixelated absolute inset-0 h-full w-full" />
       <svg
         viewBox={`0 0 ${TILE * 2} ${HEIGHT}`}
         shapeRendering="crispEdges"
-        className="h-full w-full"
+        className="absolute inset-0 h-full w-full"
         aria-hidden="true"
         focusable="false"
       >
-        {[0, TILE].map((offset) => (
-          <g key={offset} transform={`translate(${offset} 0)`}>
-            {layer.buildings.map((building) => (
-              <rect
-                key={building.x}
-                x={building.x}
-                y={HEIGHT - building.height}
-                width={building.width}
-                height={building.height}
-                fill={fill}
-              />
-            ))}
-            {layer.windows.map((light, index) => (
-              <rect
-                key={index}
-                className={light.twinkle ? "twinkle" : undefined}
-                style={light.twinkle ? ({ "--i": index % 5 } as CSSProperties) : undefined}
-                x={light.x}
-                y={light.y}
-                width={1}
-                height={2}
-                fill={light.color}
-              />
-            ))}
-          </g>
-        ))}
+        {[0, TILE].map((offset) =>
+          twinkles.map((light, index) => (
+            <rect
+              key={`${offset}-${index}`}
+              className="twinkle"
+              style={{ "--i": index % 5 } as CSSProperties}
+              x={light.x + offset}
+              y={light.y}
+              width={1}
+              height={2}
+              fill={light.color}
+            />
+          )),
+        )}
       </svg>
     </div>
   );
@@ -163,13 +104,11 @@ export function Skyline() {
       </svg>
       <SettingSun />
       <Layer
-        layer={far}
-        fill="#35281a"
+        name="far"
         className="drift-slow h-[280px] w-[2560px] md:h-[420px] md:w-[3840px]"
       />
       <Layer
-        layer={near}
-        fill="#0e0a06"
+        name="near"
         className="drift-fast h-[280px] w-[2560px] md:h-[420px] md:w-[3840px]"
       />
       <div className="scanlines" />
