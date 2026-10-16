@@ -1,38 +1,41 @@
 @import "tailwindcss";
 
-/* Arcade palette: color ramps in the 32-bit / modern pixel art style.
-   These are the only colors on the site (docs/STYLE_GUIDE.md#color). */
+/* "Metal Slug" palette: desert browns with amber and sky accents, in the
+   32-bit / modern pixel art style. These are the only UI colors on the site
+   (docs/STYLE_GUIDE.md#color). */
 :root {
-  /* night ramp */
-  --void: #07061a;
-  --night: #0f0e2a;
-  --dusk: #1c1a4a;
-  --indigo: #2c2870;
-  --slate: #4a4680;
-  --haze: #a09cc8;
-  /* warm ramp */
-  --crimson: #b3141a;
-  --red: #ff5a5f;
-  --orange: #ff8a3d;
-  --yellow: #ffd23f;
-  --butter: #fff3b0;
-  --gold: #7a5600;
-  /* pink ramp */
-  --plum: #a3006e;
-  --magenta: #ff5ccf;
-  --pink: #ffb3e6;
-  /* cool ramp */
-  --teal: #006b75;
-  --ocean: #00a3c4;
-  --cyan: #3fe0f0;
-  --ice: #b8fbff;
-  /* green ramp */
-  --forest: #1d6b2a;
-  --green: #5be36b;
-  /* neutrals */
-  --cream: #f4ecd8;
-  --sand: #e6dcc2;
-  --white: #ffffff;
+  /* earth ramp (backgrounds) */
+  --void: #0e0a06;
+  --night: #15100b;
+  --dusk: #241b12;
+  --umber: #35281a;
+  --leather: #574330;
+  --clay: #7a4a26;
+  --khaki: #b8a07a;
+  /* fire ramp (primary) */
+  --rust: #8c3b1f;
+  --orange: #e8761e;
+  --amber: #ffb000;
+  --butter: #ffe08a;
+  --bronze: #7a4900;
+  /* reds */
+  --coral: #ff6a4d;
+  --red: #ff4b4b;
+  --brick: #9c3018;
+  --crimson: #a3261a;
+  /* sky ramp */
+  --deepsea: #195a6d;
+  --lagoon: #3a9fb5;
+  --sky: #4fc3d9;
+  --ice: #a8e6f0;
+  /* greens */
+  --army: #3f5c10;
+  --olive: #9fd14a;
+  /* paper */
+  --parchment: #f6e7c8;
+  --sand: #e9d6b0;
+  --linen: #f3e6cc;
+  --paper: #fffaf0;
 }
 
 /* Dark is the default theme. */
@@ -42,40 +45,40 @@
   --bg: var(--night);
   --bg-deep: var(--void);
   --surface: var(--dusk);
-  --surface-raised: var(--indigo);
-  --text: var(--cream);
-  --text-muted: var(--haze);
+  --surface-raised: var(--umber);
+  --text: var(--parchment);
+  --text-muted: var(--khaki);
   --border: var(--void);
-  --bevel-light: var(--slate);
+  --bevel-light: var(--leather);
   --bevel-dark: var(--void);
-  --primary: var(--yellow);
+  --primary: var(--amber);
   --on-primary: var(--void);
-  --link: var(--cyan);
-  --special: var(--magenta);
-  --success: var(--green);
+  --link: var(--sky);
+  --special: var(--coral);
+  --success: var(--olive);
   --danger: var(--red);
-  --focus: var(--cyan);
+  --focus: var(--sky);
   --glow-strength: 1;
 }
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg: var(--cream);
+  --bg: var(--linen);
   --bg-deep: var(--sand);
-  --surface: var(--white);
+  --surface: var(--paper);
   --surface-raised: var(--sand);
   --text: var(--night);
-  --text-muted: var(--slate);
+  --text-muted: #66513b;
   --border: var(--night);
-  --bevel-light: var(--white);
-  --bevel-dark: var(--haze);
-  --primary: var(--gold);
-  --on-primary: var(--cream);
-  --link: var(--teal);
-  --special: var(--plum);
-  --success: var(--forest);
+  --bevel-light: var(--paper);
+  --bevel-dark: var(--khaki);
+  --primary: var(--bronze);
+  --on-primary: var(--linen);
+  --link: var(--deepsea);
+  --special: var(--brick);
+  --success: var(--army);
   --danger: var(--crimson);
-  --focus: var(--teal);
+  --focus: var(--deepsea);
   --glow-strength: 0;
 }
 
@@ -96,18 +99,18 @@
   --color-success: var(--success);
   --color-danger: var(--danger);
   --color-focus: var(--focus);
-  /* Fixed colors for always-dark "screens" (title screen, boot, cartridge labels). */
+  /* Fixed colors for always-dark "screens" (title screen, boot, HUD, cartridges, footer). */
   --color-void: var(--void);
   --color-night: var(--night);
   --color-dusk: var(--dusk);
-  --color-indigo: var(--indigo);
-  --color-haze: var(--haze);
-  --color-cream: var(--cream);
-  --color-yellow: var(--yellow);
+  --color-umber: var(--umber);
+  --color-khaki: var(--khaki);
+  --color-parchment: var(--parchment);
+  --color-amber: var(--amber);
   --color-orange: var(--orange);
-  --color-cyan: var(--cyan);
-  --color-magenta: var(--magenta);
-  --color-green: var(--green);
+  --color-sky: var(--sky);
+  --color-coral: var(--coral);
+  --color-olive: var(--olive);
 
   --font-display: var(--font-jersey), var(--font-pixelify), monospace;
   --font-ui: var(--font-pixelify), system-ui, sans-serif;
@@ -216,29 +219,29 @@
     font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    color: var(--yellow);
+    color: var(--amber);
     background: linear-gradient(
       180deg,
       var(--butter) 0 22%,
-      var(--yellow) 22% 50%,
+      var(--amber) 22% 50%,
       var(--orange) 50% 78%,
-      var(--red) 78%
+      var(--rust) 78%
     );
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(2px 0 0 var(--void)) drop-shadow(-2px 0 0 var(--void))
       drop-shadow(0 2px 0 var(--void)) drop-shadow(0 -2px 0 var(--void))
-      drop-shadow(4px 4px 0 var(--plum)) drop-shadow(3px 3px 0 var(--void));
+      drop-shadow(4px 4px 0 var(--clay)) drop-shadow(3px 3px 0 var(--void));
   }
 
   .arcade-text-cool {
     background: linear-gradient(
       180deg,
       var(--ice) 0 22%,
-      var(--cyan) 22% 55%,
-      var(--ocean) 55% 80%,
-      var(--teal) 80%
+      var(--sky) 22% 55%,
+      var(--lagoon) 55% 80%,
+      var(--deepsea) 80%
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -249,7 +252,7 @@
     background: none;
     -webkit-text-fill-color: var(--night);
     color: var(--night);
-    filter: drop-shadow(3px 3px 0 var(--haze));
+    filter: drop-shadow(3px 3px 0 var(--khaki));
   }
 
   /* Chunky arcade buttons with a 3D base. */
@@ -294,12 +297,12 @@
   }
 
   .arcade-button-primary {
-    background: linear-gradient(180deg, var(--yellow) 0 55%, var(--orange) 55%);
+    background: linear-gradient(180deg, var(--amber) 0 55%, var(--orange) 55%);
     color: var(--void);
   }
 
   .arcade-button-secondary {
-    background: linear-gradient(180deg, var(--cyan) 0 55%, var(--ocean) 55%);
+    background: linear-gradient(180deg, var(--sky) 0 55%, var(--lagoon) 55%);
     color: var(--void);
   }
 
@@ -380,7 +383,7 @@
     align-items: center;
     justify-content: center;
     background: var(--void);
-    color: var(--cream);
+    color: var(--parchment);
     animation: boot-out 240ms steps(3) 3400ms forwards;
   }
 
@@ -425,7 +428,7 @@
 
 @keyframes press-start-pulse {
   50% {
-    outline: 3px solid var(--yellow);
+    outline: 3px solid var(--amber);
     outline-offset: 6px;
   }
 }

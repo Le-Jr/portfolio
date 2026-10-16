@@ -9,11 +9,17 @@ import { deflateSync } from "node:zlib";
 import { avatarColors as spriteColors, avatarSprite as sprite } from "../content/avatar.ts";
 
 const palette = {
-  night: "#0f0e2a",
-  dusk: "#1c1a4a",
-  cream: "#f4ecd8",
-  haze: "#a09cc8",
-  yellow: "#ffd23f",
+  void: "#0e0a06",
+  night: "#15100b",
+  dusk: "#241b12",
+  umber: "#35281a",
+  clay: "#7a4a26",
+  rust: "#8c3b1f",
+  orange: "#e8761e",
+  amber: "#ffb000",
+  butter: "#ffe08a",
+  parchment: "#f6e7c8",
+  khaki: "#b8a07a",
 };
 
 // 5×7 bitmap glyphs for the few letters the image needs.
@@ -129,17 +135,44 @@ function encodePng({ width, height, pixels }) {
   ]);
 }
 
-// Open Graph image: 400×210 art at 3x = 1200×630.
+// Open Graph image: 400×210 art at 3x = 1200×630. A sunset frame in the
+// site's "Metal Slug" palette, with the portrait and the name.
 const og = createCanvas(400, 210);
-og.rect(0, 0, 400, 210, palette.night);
-og.rect(12, 12, 376, 186, palette.cream);
-og.rect(16, 16, 368, 178, palette.dusk);
-og.rect(18, 18, 364, 174, palette.haze);
-og.rect(20, 20, 360, 170, palette.dusk);
-og.sprite(81, 57, 3); // 96×96
-og.text(193, 70, 3, "LEANDRO", palette.yellow);
-og.text(193, 100, 3, "JUNIOR", palette.yellow);
-og.text(193, 140, 2, "PRESS START", palette.cream);
+const skyBands = [
+  [0, palette.void],
+  [40, palette.night],
+  [70, palette.dusk],
+  [95, palette.umber],
+  [118, palette.clay],
+  [140, palette.rust],
+  [158, palette.orange],
+  [176, palette.amber],
+];
+skyBands.forEach(([y], index) => {
+  const next = skyBands[index + 1]?.[0] ?? 210;
+  og.rect(0, y, 400, next - y, skyBands[index][1]);
+});
+og.rect(12, 12, 376, 186, palette.parchment);
+og.rect(16, 16, 368, 178, palette.void);
+og.rect(18, 18, 364, 174, palette.khaki);
+const innerBands = [
+  [20, palette.void],
+  [62, palette.night],
+  [88, palette.dusk],
+  [110, palette.umber],
+  [130, palette.clay],
+  [152, palette.rust],
+  [166, palette.orange],
+  [178, palette.amber],
+];
+innerBands.forEach(([y, color], index) => {
+  const next = innerBands[index + 1]?.[0] ?? 190;
+  og.rect(20, y, 360, next - y, color);
+});
+og.sprite(81, 54, 3); // 96×96
+og.text(193, 64, 3, "LEANDRO", palette.amber);
+og.text(193, 94, 3, "JUNIOR", palette.butter);
+og.text(193, 134, 2, "PRESS START", palette.parchment);
 writeFileSync("public/og.png", encodePng(upscale(og, 3)));
 
 // Favicons: the sprite on a night background.

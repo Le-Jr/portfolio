@@ -45,7 +45,7 @@ export function BootScreen({ strings, title, tagline }: BootScreenProps) {
   return (
     <div aria-hidden="true" className="boot-screen">
       <div className="absolute top-12 w-[min(420px,calc(100%-48px))] font-ui text-[15px] tracking-[0.1em] md:top-16">
-        <p className="boot-line text-cyan" style={{ "--d": "0ms" } as CSSProperties}>
+        <p className="boot-line text-sky" style={{ "--d": "0ms" } as CSSProperties}>
           {strings.system}
         </p>
         {strings.checks.map((check, index) => (
@@ -55,13 +55,13 @@ export function BootScreen({ strings, title, tagline }: BootScreenProps) {
             style={{ "--d": `${150 + index * 180}ms` } as CSSProperties}
           >
             <span>{check}</span>
-            <span className="text-green">{strings.ok}</span>
+            <span className="text-olive">{strings.ok}</span>
           </p>
         ))}
         <div className="boot-line mt-4" style={{ "--d": "700ms" } as CSSProperties}>
-          <p className="text-yellow">{strings.loading}</p>
-          <div className="mt-2 h-4 border-2 border-cream p-0.5">
-            <div className="boot-bar h-full bg-[repeating-linear-gradient(90deg,#ffd23f_0_10px,#ff8a3d_10px_12px)]" />
+          <p className="text-amber">{strings.loading}</p>
+          <div className="mt-2 h-4 border-2 border-parchment p-0.5">
+            <div className="boot-bar h-full bg-[repeating-linear-gradient(90deg,var(--amber)_0_10px,var(--orange)_10px_12px)]" />
           </div>
         </div>
       </div>
@@ -73,16 +73,16 @@ export function BootScreen({ strings, title, tagline }: BootScreenProps) {
         >
           {title}
         </p>
-        <p className="mt-4 font-ui text-label font-bold tracking-[0.3em] text-cyan">{tagline}</p>
+        <p className="mt-4 font-ui text-label font-bold tracking-[0.3em] text-sky">{tagline}</p>
       </div>
 
       <p
-        className="boot-line absolute bottom-12 font-ui text-label font-bold tracking-[0.2em] text-cream"
+        className="boot-line absolute bottom-12 font-ui text-label font-bold tracking-[0.2em] text-parchment"
         style={{ "--d": "300ms" } as CSSProperties}
       >
         <span className="blink">{strings.skip}</span>
       </p>
-      <p className="absolute bottom-4 font-ui text-[12px] text-haze">{strings.copyright}</p>
+      <p className="absolute bottom-4 font-ui text-[12px] text-khaki">{strings.copyright}</p>
       <div className="scanlines" />
     </div>
   );

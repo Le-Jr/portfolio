@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 
-// Night city behind the title screen: banded sky, stars, moon and two
-// drifting building layers. Generated from a fixed seed, so every build
+// Sunset city behind the title screen: banded dusk sky, a striped setting
+// sun, the first stars and two drifting building layers. Generated from a fixed seed, so every build
 // renders the same pixel art. Drift and twinkle stop under reduced motion.
 
 const TILE = 640; // sprite units per repeating tile; each layer holds two tiles
@@ -46,13 +46,13 @@ function buildLayer(seed: number, minHeight: number, maxHeight: number, windowCo
   return { buildings, windows };
 }
 
-const far = buildLayer(7, 40, 78, ["#2c2870"]);
-const near = buildLayer(23, 22, 56, ["#ffd23f", "#3fe0f0", "#ff5ccf", "#fff3b0"]);
+const far = buildLayer(7, 40, 78, ["#8c3b1f"]);
+const near = buildLayer(23, 22, 56, ["#ffb000", "#4fc3d9", "#ff6a4d", "#ffe08a"]);
 
 const starRandom = random(99);
-const stars = Array.from({ length: 70 }, (_, index) => ({
+const stars = Array.from({ length: 45 }, (_, index) => ({
   x: Math.floor(starRandom() * 320),
-  y: Math.floor(starRandom() * 80),
+  y: Math.floor(starRandom() * 50),
   big: starRandom() < 0.12,
   twinkle: index % 4 === 0,
 }));
@@ -107,11 +107,40 @@ function Layer({
   );
 }
 
+// Sun rows: a pixel circle cut by horizontal stripes that thicken toward the horizon.
+const SUN_RADIUS = 34;
+const sunRows = Array.from({ length: SUN_RADIUS * 2 }, (_, index) => {
+  const dy = index - SUN_RADIUS + 0.5;
+  const half = Math.round(Math.sqrt(SUN_RADIUS ** 2 - dy ** 2));
+  const fromTop = index / (SUN_RADIUS * 2);
+  const stripe = index > SUN_RADIUS && index % Math.max(2, 7 - Math.floor((index - SUN_RADIUS) / 6)) === 0;
+  const color = fromTop < 0.3 ? "#ffe08a" : fromTop < 0.6 ? "#ffb000" : "#e8761e";
+  return { y: index, x: 80 - half, width: half * 2, color, stripe };
+}).filter((row) => !row.stripe);
+
+function SettingSun() {
+  return (
+    <div className="absolute bottom-0 left-[58%] h-[280px] w-[320px] -translate-x-1/2 md:h-[420px] md:w-[480px]">
+      <svg
+        viewBox="0 0 160 140"
+        shapeRendering="crispEdges"
+        className="h-full w-full"
+        aria-hidden="true"
+        focusable="false"
+      >
+        {sunRows.map((row) => (
+          <rect key={row.y} x={row.x} y={row.y + 40} width={row.width} height={1} fill={row.color} />
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 export function Skyline() {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-      {/* Banded sky with a magenta horizon glow */}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#07061a_0_38%,#0f0e2a_38%_56%,#1c1a4a_56%_68%,#2c2870_68%_80%,#a3006e_80%_88%,#ff5ccf_88%)]" />
+      {/* Banded dusk sky: night on top, burning orange at the horizon */}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,var(--void)_0_24%,var(--night)_24%_38%,var(--dusk)_38%_49%,var(--umber)_49%_58%,var(--clay)_58%_67%,var(--rust)_67%_75%,var(--orange)_75%_84%,var(--amber)_84%)]" />
       <svg
         viewBox="0 0 320 140"
         preserveAspectRatio="xMidYMin slice"
@@ -128,23 +157,19 @@ export function Skyline() {
             y={star.y}
             width={star.big ? 2 : 1}
             height={star.big ? 2 : 1}
-            fill={star.big ? "#fff3b0" : "#a09cc8"}
+            fill={star.big ? "#ffe08a" : "#b8a07a"}
           />
         ))}
-        {/* Moon */}
-        <rect x="232" y="16" width="10" height="14" fill="#fff3b0" />
-        <rect x="230" y="18" width="14" height="10" fill="#fff3b0" />
-        <rect x="236" y="20" width="3" height="3" fill="#ffd23f" />
-        <rect x="240" y="25" width="2" height="2" fill="#ffd23f" />
       </svg>
+      <SettingSun />
       <Layer
         layer={far}
-        fill="#1c1a4a"
+        fill="#35281a"
         className="drift-slow h-[280px] w-[2560px] md:h-[420px] md:w-[3840px]"
       />
       <Layer
         layer={near}
-        fill="#07061a"
+        fill="#0e0a06"
         className="drift-fast h-[280px] w-[2560px] md:h-[420px] md:w-[3840px]"
       />
       <div className="scanlines" />

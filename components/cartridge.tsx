@@ -18,13 +18,13 @@ type CartridgeProps = {
  */
 function Shell({ label, children }: { label: ReactNode; children: ReactNode }) {
   return (
-    <article className="flex h-full flex-col border-3 border-void bg-[linear-gradient(180deg,#2c2870_0_8px,#1c1a4a_8px)] text-cream shadow-[inset_3px_3px_0_#4a4680,inset_-3px_-3px_0_#07061a,8px_8px_0_rgb(7_6_26/0.5)]">
+    <article className="flex h-full flex-col border-3 border-void bg-[linear-gradient(180deg,var(--umber)_0_8px,var(--dusk)_8px)] text-parchment shadow-[inset_3px_3px_0_var(--leather),inset_-3px_-3px_0_var(--void),8px_8px_0_rgb(14_10_6/0.5)]">
       <div
         aria-hidden="true"
-        className="mx-6 mt-3 h-3 bg-[repeating-linear-gradient(90deg,#07061a_0_6px,transparent_6px_12px)]"
+        className="mx-6 mt-3 h-3 bg-[repeating-linear-gradient(90deg,var(--void)_0_6px,transparent_6px_12px)]"
       />
       <div className="p-4">
-        <div className="relative overflow-hidden border-3 border-void shadow-[inset_0_0_0_2px_#4a4680]">
+        <div className="relative overflow-hidden border-3 border-void shadow-[inset_0_0_0_2px_var(--leather)]">
           {label}
           <div className="scanlines" />
         </div>
@@ -39,15 +39,15 @@ export function Cartridge({ project, locale, strings }: CartridgeProps) {
     return (
       <Shell
         label={
-          <div className="flex h-44 items-center justify-center bg-[repeating-linear-gradient(0deg,#1c1a4a_0_2px,#0f0e2a_2px_4px)]">
-            <span className="font-display text-[72px] leading-none text-haze">???</span>
+          <div className="flex h-44 items-center justify-center bg-[repeating-linear-gradient(0deg,var(--dusk)_0_2px,var(--night)_2px_4px)]">
+            <span className="font-display text-[72px] leading-none text-khaki">???</span>
           </div>
         }
       >
-        <p className="font-display text-title leading-none text-haze uppercase">
+        <p className="font-display text-title leading-none text-khaki uppercase">
           {strings.comingSoon}
         </p>
-        <p className="text-body-s text-haze">{project.description[locale]}</p>
+        <p className="text-body-s text-khaki">{project.description[locale]}</p>
       </Shell>
     );
   }
@@ -56,8 +56,8 @@ export function Cartridge({ project, locale, strings }: CartridgeProps) {
     <Shell
       label={
         // Each cartridge shows its own project's look; Lords of Logic is a terminal.
-        <div className="flex h-44 flex-col justify-center gap-1 bg-void px-5 font-mono text-[17px] leading-snug text-green">
-          <span aria-hidden="true" className="text-haze">
+        <div className="flex h-44 flex-col justify-center gap-1 bg-void px-5 font-mono text-[17px] leading-snug text-olive">
+          <span aria-hidden="true" className="text-khaki">
             $ ./lords-of-logic --start
           </span>
           <span aria-hidden="true">[ok] loading questions...</span>
@@ -71,11 +71,11 @@ export function Cartridge({ project, locale, strings }: CartridgeProps) {
       <h3 className="arcade-text text-title leading-none">{project.name}</h3>
       <dl className="grid gap-1 text-body-s">
         <div>
-          <dt className="inline text-haze">{strings.genreLabel}: </dt>
+          <dt className="inline text-khaki">{strings.genreLabel}: </dt>
           <dd className="inline">{project.genre[locale]}</dd>
         </div>
         <div>
-          <dt className="inline text-haze">{strings.builtWithLabel}: </dt>
+          <dt className="inline text-khaki">{strings.builtWithLabel}: </dt>
           <dd className="inline">{project.builtWith[locale]}</dd>
         </div>
       </dl>

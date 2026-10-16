@@ -81,12 +81,12 @@ export function SitePage({ locale }: { locale: Locale }) {
         <section
           id="start"
           aria-labelledby="start-title"
-          className="relative isolate flex min-h-dvh items-end overflow-hidden bg-void pt-24 text-cream md:items-center"
+          className="relative isolate flex min-h-dvh items-end overflow-hidden bg-void pt-24 text-parchment md:items-center"
         >
           <Skyline />
           <div className="relative mx-auto grid w-full max-w-6xl items-center gap-6 px-4 pb-10 md:grid-cols-[1.1fr_1fr] md:gap-10 md:px-8 md:pb-0">
             <div className="flex flex-col items-center text-center md:items-start md:text-left">
-              <p className="mb-4 font-ui text-label font-bold tracking-[0.3em] text-magenta">
+              <p className="mb-4 font-ui text-label font-bold tracking-[0.3em] text-coral">
                 <span className="blink">{t.start.insertCoin}</span>
               </p>
               <h1 id="start-title" tabIndex={-1} className="logo-in">
@@ -95,10 +95,12 @@ export function SitePage({ locale }: { locale: Locale }) {
                   JUNIOR
                 </span>
               </h1>
-              <p className="mt-5 inline-block border-y-3 border-cyan px-3 py-1 font-ui text-[15px] font-bold tracking-[0.35em] text-cyan md:text-[18px]">
+              <p className="mt-5 inline-block border-y-3 border-sky px-3 py-1 font-ui text-[15px] font-bold tracking-[0.35em] text-sky md:text-[18px]">
                 {start.tagline[locale]}
               </p>
-              <p className="mt-6 max-w-xl text-body-l text-cream">{start.subtitle[locale]}</p>
+              <p className="mt-6 max-w-xl border-l-4 border-amber bg-void/80 px-4 py-3 text-body-l text-parchment">
+                {start.subtitle[locale]}
+              </p>
               <div className="mt-8 flex flex-col items-center gap-5 sm:flex-row">
                 <TrackedLink
                   href="#about"
@@ -122,7 +124,7 @@ export function SitePage({ locale }: { locale: Locale }) {
             <div className="relative flex justify-center md:justify-end">
               <div
                 aria-hidden="true"
-                className="absolute bottom-6 h-24 w-[80%] bg-cyan opacity-20 blur-2xl"
+                className="absolute bottom-6 h-24 w-[80%] bg-sky opacity-20 blur-2xl"
               />
               <DevScene className="relative h-[192px] w-[288px] sm:h-[256px] sm:w-[384px] lg:h-[320px] lg:w-[480px]" />
             </div>
@@ -138,7 +140,7 @@ export function SitePage({ locale }: { locale: Locale }) {
             <div className="flex flex-col items-center gap-4">
               <div className="panel panel-glow flex flex-col items-center p-4!" style={{ "--glow": "var(--primary)" } as CSSProperties}>
                 <span className="chip mb-3 text-primary">{t.about.selected}</span>
-                <div className="relative border-3 border-border bg-[linear-gradient(180deg,#2c2870_0_60%,#a3006e_60%_80%,#ff5ccf_80%)]">
+                <div className="relative border-3 border-border bg-[linear-gradient(180deg,var(--umber)_0_50%,var(--clay)_50%_68%,var(--rust)_68%_82%,var(--orange)_82%)]">
                   <Avatar label={t.about.avatarAlt} scale={7} />
                   <div className="scanlines" />
                 </div>
@@ -146,7 +148,7 @@ export function SitePage({ locale }: { locale: Locale }) {
               </div>
               {/* Character grid: Leandro picked, the other slots wait for player 2. */}
               <ul className="grid grid-cols-4 gap-2" aria-hidden="true">
-                <li className="flex size-14 items-center justify-center overflow-hidden border-3 border-primary bg-indigo">
+                <li className="flex size-14 items-center justify-center overflow-hidden border-3 border-primary bg-umber">
                   <Avatar label="" scale={1} />
                 </li>
                 {[0, 1, 2].map((slot) => (
@@ -318,10 +320,10 @@ export function SitePage({ locale }: { locale: Locale }) {
       </main>
 
       {/* 7. Footer: credits */}
-      <footer aria-labelledby="credits-title" className="relative overflow-hidden bg-void text-cream">
+      <footer aria-labelledby="credits-title" className="relative overflow-hidden bg-void text-parchment">
         <div className="scanlines" />
         <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-5 px-4 py-20 text-center">
-          <p className="font-ui text-label font-bold tracking-[0.3em] text-magenta">
+          <p className="font-ui text-label font-bold tracking-[0.3em] text-coral">
             {t.footer.thanks}
           </p>
           <h2 id="credits-title" className="arcade-text text-title-l leading-none">
@@ -331,25 +333,25 @@ export function SitePage({ locale }: { locale: Locale }) {
           <ul className="flex flex-wrap justify-center gap-6 text-body">
             {contact.github ? (
               <li>
-                <a href={contact.github} target="_blank" rel="noopener" className="text-cyan">
+                <a href={contact.github} target="_blank" rel="noopener" className="text-sky">
                   {t.contact.githubLabel}
                 </a>
               </li>
             ) : null}
             <li>
-              <a href={contact.linkedin} target="_blank" rel="noopener" className="text-cyan">
+              <a href={contact.linkedin} target="_blank" rel="noopener" className="text-sky">
                 {t.contact.linkedinLabel}
               </a>
             </li>
             <li>
-              <a href={`mailto:${contact.email}`} className="text-cyan">
+              <a href={`mailto:${contact.email}`} className="text-sky">
                 {contact.email}
               </a>
             </li>
           </ul>
-          <p className="text-body-s text-haze">{t.footer.creditsIcons}</p>
-          <p className="text-body-s text-haze">{t.footer.creditsFonts}</p>
-          <a href="#start" className="mt-4 font-ui text-label font-bold tracking-[0.3em] text-yellow no-underline">
+          <p className="text-body-s text-khaki">{t.footer.creditsIcons}</p>
+          <p className="text-body-s text-khaki">{t.footer.creditsFonts}</p>
+          <a href="#start" className="mt-4 font-ui text-label font-bold tracking-[0.3em] text-amber no-underline">
             <span className="blink">{t.footer.continue}</span>
           </a>
         </div>

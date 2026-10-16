@@ -39,19 +39,19 @@ export function Hud({ locale, stages, menuItems, strings }: HudProps) {
   const stage = stages[current];
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b-3 border-void bg-void/90 text-cream backdrop-blur-[2px]">
+    <header className="fixed inset-x-0 top-0 z-50 border-b-3 border-void bg-void/90 text-parchment backdrop-blur-[2px]">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 md:px-8">
         <a
           href="#start"
-          className="flex items-center gap-3 font-ui font-bold tracking-[0.12em] text-cream no-underline"
+          className="flex items-center gap-3 font-ui font-bold tracking-[0.12em] text-parchment no-underline"
         >
-          <span className="chip text-yellow">{strings.hud.player}</span>
+          <span className="chip text-amber">{strings.hud.player}</span>
           <span className="text-[15px]">{strings.hud.playerName}</span>
         </a>
 
         <p className="hidden items-center gap-3 font-ui text-[15px] font-bold tracking-[0.12em] md:flex">
-          <span className="text-haze">{strings.hud.stage}</span>
-          <span className="font-display text-[28px] leading-none text-cyan">
+          <span className="text-khaki">{strings.hud.stage}</span>
+          <span className="font-display text-[28px] leading-none text-sky">
             {String(current + 1).padStart(2, "0")}
           </span>
           <span>{stage?.label}</span>

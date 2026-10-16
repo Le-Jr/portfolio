@@ -7,15 +7,16 @@ import type { CSSProperties } from "react";
 type Rect = [x: number, y: number, w: number, h: number, color: string];
 
 const c = {
-  void: "#07061a",
-  night: "#0f0e2a",
-  dusk: "#1c1a4a",
-  indigo: "#2c2870",
-  slate: "#4a4680",
-  haze: "#a09cc8",
-  monitor: "#3b3f5c",
-  monitorLight: "#8a90b0",
+  void: "#0e0a06",
+  night: "#15100b",
+  dusk: "#241b12",
+  umber: "#35281a",
+  leather: "#574330",
+  khaki: "#b8a07a",
+  monitor: "#4a4540",
+  monitorLight: "#8a8178",
   wood: "#8d6650",
+  woodLight: "#a87e66",
   woodDark: "#6b4a3a",
   woodDeep: "#3a2218",
   hair: "#6b3e2e",
@@ -23,29 +24,31 @@ const c = {
   hairLight: "#a0705a",
   skin: "#f2c29b",
   skinShade: "#c98a64",
-  hoodie: "#3fe0f0",
-  hoodieShade: "#00a3c4",
-  hoodieLight: "#b8fbff",
-  pants: "#4a4680",
-  pantsShade: "#2c2870",
-  yellow: "#ffd23f",
-  magenta: "#ff5ccf",
-  green: "#5be36b",
-  red: "#ff5a5f",
-  cream: "#f4ecd8",
+  hoodie: "#4fc3d9",
+  hoodieShade: "#3a9fb5",
+  hoodieLight: "#a8e6f0",
+  pants: "#574330",
+  pantsShade: "#35281a",
+  amber: "#ffb000",
+  butter: "#ffe08a",
+  orange: "#e8761e",
+  rust: "#8c3b1f",
+  coral: "#ff6a4d",
+  olive: "#9fd14a",
+  parchment: "#f6e7c8",
 };
 
 const floor: Rect[] = [
-  [4, 57, 88, 3, c.indigo],
-  [4, 57, 88, 1, c.slate],
+  [4, 57, 88, 3, c.umber],
+  [4, 57, 88, 1, c.leather],
   [8, 60, 80, 2, c.dusk],
 ];
 
 const chair: Rect[] = [
   [9, 20, 5, 22, c.dusk],
-  [9, 20, 1, 22, c.slate],
+  [9, 20, 1, 22, c.leather],
   [13, 40, 21, 3, c.dusk],
-  [13, 40, 21, 1, c.slate],
+  [13, 40, 21, 1, c.leather],
   [22, 43, 3, 9, c.monitor],
   [14, 52, 19, 2, c.monitor],
   [14, 54, 3, 2, c.void],
@@ -54,19 +57,19 @@ const chair: Rect[] = [
 
 const desk: Rect[] = [
   [44, 38, 50, 3, c.wood],
-  [44, 38, 50, 1, "#a87e66"],
+  [44, 38, 50, 1, c.woodLight],
   [44, 41, 50, 1, c.woodDark],
   [47, 42, 3, 15, c.woodDark],
   [89, 42, 3, 15, c.woodDark],
   [70, 42, 17, 9, c.woodDark],
   [77, 45, 3, 1, c.woodDeep],
   // plant
-  [46, 33, 5, 5, c.red],
-  [46, 33, 5, 1, "#ff8a8d"],
-  [47, 28, 1, 5, c.green],
-  [49, 26, 1, 7, c.green],
-  [45, 29, 2, 1, c.green],
-  [50, 27, 2, 1, c.green],
+  [46, 33, 5, 5, c.rust],
+  [46, 33, 5, 1, c.orange],
+  [47, 28, 1, 5, c.olive],
+  [49, 26, 1, 7, c.olive],
+  [45, 29, 2, 1, c.olive],
+  [50, 27, 2, 1, c.olive],
   // monitor
   [52, 10, 34, 24, c.monitor],
   [52, 10, 34, 1, c.monitorLight],
@@ -75,22 +78,22 @@ const desk: Rect[] = [
   [62, 37, 14, 1, c.monitorLight],
   // keyboard
   [55, 36, 15, 2, c.monitorLight],
-  [55, 36, 15, 1, c.cream],
+  [55, 36, 15, 1, c.parchment],
   // mug
-  [87, 32, 5, 6, c.magenta],
-  [87, 32, 5, 1, "#ffb3e6"],
-  [92, 33, 1, 3, c.magenta],
+  [87, 32, 5, 6, c.coral],
+  [87, 32, 5, 1, c.parchment],
+  [92, 33, 1, 3, c.coral],
 ];
 
 // Code on the monitor: [x, y, width, color]; revealed line by line.
 const codeLines: [number, number, number, string][] = [
-  [56, 14, 12, c.magenta],
+  [56, 14, 12, c.coral],
   [58, 16, 18, c.hoodie],
-  [60, 18, 14, c.yellow],
-  [60, 20, 20, c.cream],
+  [60, 18, 14, c.amber],
+  [60, 20, 20, c.parchment],
   [58, 22, 9, c.hoodie],
-  [56, 24, 6, c.magenta],
-  [56, 26, 16, c.green],
+  [56, 24, 6, c.coral],
+  [56, 26, 16, c.olive],
 ];
 
 const body: Rect[] = [
@@ -126,7 +129,7 @@ const head: Rect[] = [
   [31, 11, 1, 2, c.skin],
   [29, 14, 2, 1, c.skinShade],
   // screen light on the face
-  [30, 8, 1, 6, "#fff3b0"],
+  [30, 8, 1, 6, c.butter],
 ];
 
 const armBack: Rect[] = [
@@ -179,8 +182,8 @@ export function DevScene({ className }: { className?: string }) {
           fill={fill}
         />
       ))}
-      <rect className="ds-blink" x="74" y="26" width="2" height="2" fill={c.yellow} />
-      <rect className="ds-blink" x="84" y="32" width="1" height="1" fill={c.green} />
+      <rect className="ds-blink" x="74" y="26" width="2" height="2" fill={c.amber} />
+      <rect className="ds-blink" x="84" y="32" width="1" height="1" fill={c.olive} />
 
       {[0, 1, 2].map((index) => (
         <rect
@@ -191,7 +194,7 @@ export function DevScene({ className }: { className?: string }) {
           y={29 - index}
           width="1"
           height="2"
-          fill={c.haze}
+          fill={c.khaki}
           opacity="0"
         />
       ))}
