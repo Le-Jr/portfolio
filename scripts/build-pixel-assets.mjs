@@ -136,21 +136,21 @@ og.rect(12, 12, 376, 186, palette.cream);
 og.rect(16, 16, 368, 178, palette.dusk);
 og.rect(18, 18, 364, 174, palette.haze);
 og.rect(20, 20, 360, 170, palette.dusk);
-og.sprite(81, 57, 6); // 96×96
+og.sprite(81, 57, 3); // 96×96
 og.text(193, 70, 3, "LEANDRO", palette.yellow);
 og.text(193, 100, 3, "JUNIOR", palette.yellow);
 og.text(193, 140, 2, "PRESS START", palette.cream);
 writeFileSync("public/og.png", encodePng(upscale(og, 3)));
 
 // Favicons: the sprite on a night background.
-const icon = createCanvas(16, 16);
-icon.rect(0, 0, 16, 16, palette.night);
+const icon = createCanvas(32, 32);
+icon.rect(0, 0, 32, 32, palette.night);
 icon.sprite(0, 0, 1);
-writeFileSync("public/favicon-32.png", encodePng(upscale(icon, 2)));
+writeFileSync("public/favicon-32.png", encodePng(icon));
 
 const touch = createCanvas(36, 36); // 32 px art + 2 px padding, at 5x = 180
 touch.rect(0, 0, 36, 36, palette.night);
-touch.sprite(2, 2, 2);
+touch.sprite(2, 2, 1);
 writeFileSync("public/apple-touch-icon.png", encodePng(upscale(touch, 5)));
 
 const rects = sprite
@@ -162,7 +162,7 @@ const rects = sprite
   .join("");
 writeFileSync(
   "public/favicon.svg",
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges"><rect width="16" height="16" fill="${palette.night}"/>${rects}</svg>\n`,
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges"><rect width="32" height="32" fill="${palette.night}"/>${rects}</svg>\n`,
 );
 
 console.log("Wrote public/og.png, favicon.svg, favicon-32.png, apple-touch-icon.png");

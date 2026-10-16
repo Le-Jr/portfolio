@@ -1,32 +1,55 @@
-// Placeholder avatar sprite (16×16), self-made, until the final avatar exists.
+// Placeholder portrait sprite (32×32), self-made, until the final avatar exists.
 // Each character is one pixel; "." is transparent. See docs/ASSETS.md.
+// After editing, run `npm run assets` to refresh the favicons and Open Graph image.
 
 export const avatarSprite = [
-  "................",
-  ".....OOOOOO.....",
-  "....OHHHHHHO....",
-  "...OHHHHHHHHO...",
-  "...OHHSSSSHHO...",
-  "...OHSSSSSSHO...",
-  "...OSNSSSSNSO...",
-  "...OSSSSSSSSO...",
-  "...OSSSDDSSSO...",
-  "....OSSSSSSO....",
-  ".....OOSSOO.....",
-  "...OOCCSSCCOO...",
-  "..OCCCCCCCCCCO..",
-  ".OCCCTCCCCTCCCO.",
-  ".OCCCTCCCCTCCCO.",
-  ".OOOOOOOOOOOOOO.",
+  "................................",
+  ".............oooooo.............",
+  "...........ooHHHHHHoo...........",
+  "..........oHHHgggHHHHo..........",
+  ".........oHHggHHHHHHHho.........",
+  "........oHHgHHHHHHHHHhho........",
+  ".......oHHHHHHHHHHHHHhhho.......",
+  ".......oHHHHHHHHHHHHHhhho.......",
+  ".......oHHHHHHHHHHHHHhhho.......",
+  "......oHHHHHHHHHHHHHHhhhho......",
+  "......ohhSHHSSHHSSSHssshho......",
+  ".......ohSShhhSSSShhhssho.......",
+  "......oshhSSSSSSSSSssshhso......",
+  "......ossSSSweSSSSewssssso......",
+  "......ossSSSeeSSSSeessssso......",
+  ".......ooSSSSSSSsSSssssoo.......",
+  "........oSSSSSSSsSSsssso........",
+  ".........oSSSsSsSSSssso.........",
+  ".........oSSSSmmmmSssso.........",
+  "..........oSSSSSSSSsso..........",
+  "...........oSSSSSSSso...........",
+  "............oSSSSsso............",
+  "............okssssko............",
+  "........ooooCSkssksCoooo........",
+  "......ooCCCCCCCkkCCCCCccoo......",
+  ".....oCCCCCCCCCkkCCCCCcccco.....",
+  "....oiiiiCCCCCkCCkCCCCccccco....",
+  "...oiiiiiCCCCCiCCiCCCCcccccco...",
+  "..oiiiiiiCCCCCiCCiCCCCccccccco..",
+  ".oiiiiiiiCCCCCCCCCCCCCcccccccco.",
+  ".oiiiiiiiCCCCCCCCCCCCCcccccccco.",
+  "oiiiiiiiiCCCCCCCCCCCCCccccccccco",
 ];
 
-/** Palette colors only (docs/STYLE_GUIDE.md). */
+/** Palette and sprite ramps only (docs/STYLE_GUIDE.md#color). */
 export const avatarColors: Record<string, string> = {
-  O: "#0f0e2a", // night (outline)
-  H: "#7a5600", // gold (hair)
-  S: "#f4ecd8", // cream (skin)
-  D: "#e6dcc2", // sand (shading)
-  N: "#0f0e2a", // night (eyes)
-  C: "#3fe0f0", // cyan (shirt)
-  T: "#006b75", // teal (shirt detail)
+  o: "#07061a", // outline
+  h: "#3a2218", // hair shadow
+  H: "#6b3e2e", // hair
+  g: "#a0705a", // hair highlight
+  S: "#f2c29b", // skin
+  s: "#c98a64", // skin shade
+  e: "#07061a", // eyes
+  w: "#ffffff", // eye shine
+  m: "#8a3a3a", // mouth
+  C: "#3fe0f0", // hoodie
+  c: "#00a3c4", // hoodie shade
+  i: "#b8fbff", // hoodie highlight
+  k: "#1c1a4a", // collar
 };

@@ -1,6 +1,6 @@
 import { avatarColors, avatarSprite } from "@/content/avatar";
 
-const SCALE = 12; // 16 px sprite shown at 192 px: an integer scale.
+const SCALE = 6; // 32 px sprite shown at 192 px: an integer scale.
 
 type Run = { x: number; y: number; width: number; color: string };
 
@@ -17,14 +17,14 @@ const runs: Run[] = avatarSprite.flatMap((row, y) => {
   return rowRuns;
 });
 
-export function Avatar({ label }: { label: string }) {
+export function Avatar({ label, scale = SCALE }: { label: string; scale?: number }) {
   const size = avatarSprite.length;
   return (
     <svg
       role="img"
       aria-label={label}
-      width={size * SCALE}
-      height={size * SCALE}
+      width={size * scale}
+      height={size * scale}
       viewBox={`0 0 ${size} ${size}`}
       shapeRendering="crispEdges"
     >
