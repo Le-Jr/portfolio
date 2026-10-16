@@ -2,6 +2,24 @@ import type { UiStrings } from "./en";
 
 export const ptBR: UiStrings = {
   skipToSummary: "Pular para o resumo",
+  boot: {
+    system: "LJ ARCADE SYSTEM",
+    checks: ["TESTE DE MEMÓRIA", "TESTE DE VÍDEO", "TESTE DE CONTROLES"],
+    ok: "OK",
+    loading: "CARREGANDO",
+    skip: "APERTE QUALQUER BOTÃO",
+    copyright: "© 2026 LEANDRO JUNIOR",
+  },
+  hud: {
+    player: "1P",
+    playerName: "LEANDRO JR",
+    stage: "FASE",
+    credit: "CRÉDITO",
+  },
+  stageLabel: "FASE",
+  start: {
+    insertCoin: "INSIRA UMA FICHA",
+  },
   menu: {
     label: "PAUSE",
     open: "Abrir menu",
@@ -23,19 +41,25 @@ export const ptBR: UiStrings = {
   },
   about: {
     title: "ESCOLHA SEU PERSONAGEM",
+    selected: "SELECIONADO",
+    lockedSlot: "Espaço bloqueado",
+    player2Slot: "2P?",
     classLabel: "Classe",
     specialtyLabel: "Especialidade",
     attributesLabel: "Atributos",
     avatarAlt: "Retrato em pixel art de Leandro Junior",
   },
   timeline: {
-    title: "MAPA DE MUNDO",
+    title: "MODO CARREIRA",
+    current: "FASE ATUAL",
     offline: "Fora do ar",
     present: "hoje",
     buildWithMe: "VAMOS CONSTRUIR",
   },
   skills: {
     title: "INVENTÁRIO",
+    hint: "Passe o mouse ou toque em um item para ver detalhes.",
+    itemsLabel: "itens",
     usageLabel: "Onde eu uso",
   },
   projects: {
@@ -49,6 +73,11 @@ export const ptBR: UiStrings = {
   },
   partnerships: {
     title: "PLAYER 2, PRESS START",
+    player1: "1P · LEANDRO",
+    player2: "2P · VOCÊ",
+    coopResult: "MODO COOPERATIVO",
+    joinIn: "APERTE START PARA ENTRAR",
+    round: "ROUND",
     howItWorksTitle: "COMO FUNCIONA",
     contactTitle: "CONTATO",
   },
@@ -59,8 +88,10 @@ export const ptBR: UiStrings = {
   },
   footer: {
     title: "CRÉDITOS",
+    thanks: "OBRIGADO POR JOGAR",
+    continue: "CONTINUAR?",
     madeBy: "Feito por Leandro Junior",
     creditsIcons: "Ícones: pixelarticons de Gerrit Halfmann (MIT)",
-    creditsFonts: "Fontes: Press Start 2P e VT323 (SIL OFL)",
+    creditsFonts: "Fontes: Jersey 10 e Pixelify Sans (SIL OFL)",
   },
 };

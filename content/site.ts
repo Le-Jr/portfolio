@@ -14,13 +14,15 @@ export const site = {
       "Desenvolvedor fullstack que já foi estrategista de marketing. Eu construo produtos digitais que as pessoas querem usar.",
   } satisfies Localized,
   ogImageAlt: {
-    en: "Leandro Junior's 16-bit portfolio title screen",
-    "pt-BR": "Tela de título do portfólio 16 bits de Leandro Junior",
+    en: "Leandro Junior's arcade portfolio title screen",
+    "pt-BR": "Tela de título do portfólio arcade de Leandro Junior",
   } satisfies Localized,
 };
 
 export const start = {
   title: "LEANDRO JUNIOR",
+  /** Shown under the logo. */
+  tagline: { en: "FULL STACK DEVELOPER", "pt-BR": "DESENVOLVEDOR FULL STACK" } satisfies Localized,
   subtitle: site.description,
   play: { en: "PRESS START", "pt-BR": "PRESS START" } satisfies Localized,
   contact: {

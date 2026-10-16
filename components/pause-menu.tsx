@@ -22,7 +22,7 @@ function goToSection(id: string) {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   section.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
   history.replaceState(null, "", `#${id}`);
-  section.querySelector<HTMLElement>("h1, h2")?.focus({ preventScroll: true });
+  section.querySelector<HTMLElement>("h1, h2, h3")?.focus({ preventScroll: true });
 }
 
 export function PauseMenu({ locale, sections, strings }: PauseMenuProps) {
@@ -62,14 +62,14 @@ export function PauseMenu({ locale, sections, strings }: PauseMenuProps) {
   }
 
   return (
-    <div className="fixed top-4 right-4 z-50">
+    <div className="relative">
       <button
         ref={toggleRef}
         type="button"
         aria-expanded={open}
         aria-controls="pause-menu"
         aria-label={open ? strings.menu.close : strings.menu.open}
-        className="pixel-button pixel-button-secondary relative z-10"
+        className="arcade-button arcade-button-ghost relative z-10 min-h-11 px-4 py-1 text-[15px]"
         onClick={() => {
           playSelect();
           setOpen((value) => !value);
@@ -86,7 +86,7 @@ export function PauseMenu({ locale, sections, strings }: PauseMenuProps) {
         <>
           <div
             aria-hidden="true"
-            className="fixed inset-0 bg-night/80"
+            className="fixed inset-0 top-16 bg-void/80"
             onClick={() => close(false)}
           />
           <div
@@ -96,7 +96,7 @@ export function PauseMenu({ locale, sections, strings }: PauseMenuProps) {
             aria-modal="true"
             aria-label={strings.menu.label}
             onKeyDown={handlePanelKeyDown}
-            className="dialog-box screen-in fixed inset-x-4 top-24 bottom-4 overflow-y-auto md:absolute md:inset-auto md:top-16 md:right-0 md:bottom-auto md:w-[480px]"
+            className="panel screen-in fixed inset-x-4 top-20 bottom-4 overflow-y-auto text-text md:absolute md:inset-auto md:top-full md:right-0 md:bottom-auto md:mt-4 md:max-h-[calc(100dvh-6rem)] md:w-[460px]"
           >
             <ArrowNav className="flex flex-col gap-6">
               <nav aria-label={strings.menu.navLabel}>
@@ -106,7 +106,7 @@ export function PauseMenu({ locale, sections, strings }: PauseMenuProps) {
                       <a
                         data-nav-item
                         href={`#${section.id}`}
-                        className="menu-item flex min-h-11 items-center font-pixel text-display-m text-text no-underline"
+                        className="menu-item flex min-h-11 items-center font-display text-[30px] leading-none tracking-wide text-text uppercase no-underline hover:text-primary"
                         onClick={(event) => {
                           event.preventDefault();
                           close(false);

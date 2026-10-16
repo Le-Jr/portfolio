@@ -1,6 +1,24 @@
 // UI chrome strings. Copy reference: docs/CONTENT.md.
 export const en = {
   skipToSummary: "Skip to summary",
+  boot: {
+    system: "LJ ARCADE SYSTEM",
+    checks: ["MEMORY CHECK", "VIDEO CHECK", "INPUT CHECK"],
+    ok: "OK",
+    loading: "LOADING",
+    skip: "PRESS ANY BUTTON",
+    copyright: "© 2026 LEANDRO JUNIOR",
+  },
+  hud: {
+    player: "1P",
+    playerName: "LEANDRO JR",
+    stage: "STAGE",
+    credit: "CREDIT",
+  },
+  stageLabel: "STAGE",
+  start: {
+    insertCoin: "INSERT COIN",
+  },
   menu: {
     label: "PAUSE",
     open: "Open menu",
@@ -21,20 +39,26 @@ export const en = {
     sound: { label: "SOUND", off: "OFF", on: "ON" },
   },
   about: {
-    title: "CHOOSE YOUR PLAYER",
+    title: "PLAYER SELECT",
+    selected: "SELECTED",
+    lockedSlot: "Locked slot",
+    player2Slot: "2P?",
     classLabel: "Class",
     specialtyLabel: "Specialty",
     attributesLabel: "Attributes",
     avatarAlt: "Pixel-art portrait of Leandro Junior",
   },
   timeline: {
-    title: "WORLD MAP",
+    title: "CAREER MODE",
+    current: "NOW PLAYING",
     offline: "Offline",
     present: "present",
     buildWithMe: "LET'S BUILD IT",
   },
   skills: {
     title: "INVENTORY",
+    hint: "Hover or tap an item to inspect it.",
+    itemsLabel: "items",
     usageLabel: "Where I use it",
   },
   projects: {
@@ -48,6 +72,11 @@ export const en = {
   },
   partnerships: {
     title: "PLAYER 2, PRESS START",
+    player1: "1P · LEANDRO",
+    player2: "2P · YOU",
+    coopResult: "CO-OP MODE",
+    joinIn: "PRESS START TO JOIN",
+    round: "ROUND",
     howItWorksTitle: "HOW IT WORKS",
     contactTitle: "CONTACT",
   },
@@ -58,9 +87,11 @@ export const en = {
   },
   footer: {
     title: "CREDITS",
+    thanks: "THANK YOU FOR PLAYING",
+    continue: "CONTINUE?",
     madeBy: "Made by Leandro Junior",
     creditsIcons: "Icons: pixelarticons by Gerrit Halfmann (MIT)",
-    creditsFonts: "Fonts: Press Start 2P and VT323 (SIL OFL)",
+    creditsFonts: "Fonts: Jersey 10 and Pixelify Sans (SIL OFL)",
   },
 };
 

@@ -1,17 +1,19 @@
-import { Press_Start_2P, VT323 } from "next/font/google";
+import { Jersey_10, Pixelify_Sans } from "next/font/google";
 
 // Self-hosted at build time by next/font. Both fonts are SIL OFL 1.1.
 
-export const pixelFont = Press_Start_2P({
+/** Arcade marquee face: logo, section titles, big numbers. */
+export const displayFont = Jersey_10({
   weight: "400",
   subsets: ["latin", "latin-ext"],
-  variable: "--font-press-start",
+  variable: "--font-jersey",
   display: "swap",
 });
 
-export const bodyFont = VT323({
-  weight: "400",
+/** Modern pixel face for UI and body text (variable weight 400–700). */
+export const uiFont = Pixelify_Sans({
+  weight: "variable",
   subsets: ["latin", "latin-ext"],
-  variable: "--font-vt323",
+  variable: "--font-pixelify",
   display: "swap",
 });

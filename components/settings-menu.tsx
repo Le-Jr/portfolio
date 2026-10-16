@@ -20,7 +20,7 @@ function currentTheme(): Theme {
 }
 
 const optionClass =
-  "menu-item min-h-11 cursor-pointer pr-2 font-pixel text-display-m aria-pressed:text-primary";
+  "menu-item min-h-11 cursor-pointer pr-2 font-ui text-[16px] font-bold uppercase tracking-wider aria-pressed:text-primary";
 
 export function SettingsMenu({ locale, strings }: SettingsMenuProps) {
   const [theme, setTheme] = useState<Theme>(currentTheme);
@@ -43,10 +43,10 @@ export function SettingsMenu({ locale, strings }: SettingsMenuProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      <p className="font-pixel text-display-m text-muted">{strings.title}</p>
+      <p className="font-ui text-[16px] font-bold uppercase tracking-wider text-muted">{strings.title}</p>
 
       <div role="group" aria-label={strings.theme.label} className="flex flex-wrap items-center gap-x-4 gap-y-1">
-        <span className="flex w-full items-center gap-2 font-pixel sm:w-48 text-display-m">
+        <span className="flex w-full items-center gap-2 font-ui text-[16px] font-bold uppercase tracking-wider sm:w-48">
           <PixelIcon name={theme === "dark" ? "moon" : "sun"} />
           {strings.theme.label}
         </span>
@@ -71,11 +71,11 @@ export function SettingsMenu({ locale, strings }: SettingsMenuProps) {
       </div>
 
       <div role="group" aria-label={strings.language.label} className="flex flex-wrap items-center gap-x-4 gap-y-1">
-        <span className="flex w-full items-center gap-2 font-pixel sm:w-48 text-display-m">
+        <span className="flex w-full items-center gap-2 font-ui text-[16px] font-bold uppercase tracking-wider sm:w-48">
           <PixelIcon name="languages" />
           {strings.language.label}
         </span>
-        <span aria-current="true" className="menu-item pr-2 font-pixel text-display-m text-primary">
+        <span aria-current="true" className="menu-item pr-2 font-ui text-[16px] font-bold uppercase tracking-wider text-primary">
           {locale === "en" ? strings.language.en : strings.language.ptBR}
         </span>
         <a
@@ -90,7 +90,7 @@ export function SettingsMenu({ locale, strings }: SettingsMenuProps) {
       </div>
 
       <div role="group" aria-label={strings.sound.label} className="flex flex-wrap items-center gap-x-4 gap-y-1">
-        <span className="flex w-full items-center gap-2 font-pixel sm:w-48 text-display-m">
+        <span className="flex w-full items-center gap-2 font-ui text-[16px] font-bold uppercase tracking-wider sm:w-48">
           <PixelIcon name={sound ? "volume-2" : "volume-x"} />
           {strings.sound.label}
         </span>

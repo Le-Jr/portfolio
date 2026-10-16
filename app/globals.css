@@ -1,23 +1,38 @@
 @import "tailwindcss";
 
-/* Palette: the only 16 colors on the site. See docs/STYLE_GUIDE.md. */
+/* Arcade palette: color ramps in the 32-bit / modern pixel art style.
+   These are the only colors on the site (docs/STYLE_GUIDE.md#color). */
 :root {
+  /* night ramp */
+  --void: #07061a;
   --night: #0f0e2a;
   --dusk: #1c1a4a;
+  --indigo: #2c2870;
+  --slate: #4a4680;
+  --haze: #a09cc8;
+  /* warm ramp */
+  --crimson: #b3141a;
+  --red: #ff5a5f;
+  --orange: #ff8a3d;
+  --yellow: #ffd23f;
+  --butter: #fff3b0;
+  --gold: #7a5600;
+  /* pink ramp */
+  --plum: #a3006e;
+  --magenta: #ff5ccf;
+  --pink: #ffb3e6;
+  /* cool ramp */
+  --teal: #006b75;
+  --ocean: #00a3c4;
+  --cyan: #3fe0f0;
+  --ice: #b8fbff;
+  /* green ramp */
+  --forest: #1d6b2a;
+  --green: #5be36b;
+  /* neutrals */
   --cream: #f4ecd8;
   --sand: #e6dcc2;
-  --haze: #a09cc8;
-  --slate: #4a4680;
-  --yellow: #ffd23f;
-  --cyan: #3fe0f0;
-  --magenta: #ff5ccf;
-  --green: #5be36b;
-  --red: #ff5a5f;
-  --gold: #7a5600;
-  --teal: #006b75;
-  --plum: #a3006e;
-  --forest: #1d6b2a;
-  --crimson: #b3141a;
+  --white: #ffffff;
 }
 
 /* Dark is the default theme. */
@@ -25,28 +40,35 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   --bg: var(--night);
+  --bg-deep: var(--void);
   --surface: var(--dusk);
+  --surface-raised: var(--indigo);
   --text: var(--cream);
   --text-muted: var(--haze);
-  --border: var(--cream);
-  --border-inner: var(--haze);
+  --border: var(--void);
+  --bevel-light: var(--slate);
+  --bevel-dark: var(--void);
   --primary: var(--yellow);
-  --on-primary: var(--night);
+  --on-primary: var(--void);
   --link: var(--cyan);
   --special: var(--magenta);
   --success: var(--green);
   --danger: var(--red);
   --focus: var(--cyan);
+  --glow-strength: 1;
 }
 
 :root[data-theme="light"] {
   color-scheme: light;
   --bg: var(--cream);
-  --surface: var(--sand);
+  --bg-deep: var(--sand);
+  --surface: var(--white);
+  --surface-raised: var(--sand);
   --text: var(--night);
   --text-muted: var(--slate);
   --border: var(--night);
-  --border-inner: var(--slate);
+  --bevel-light: var(--white);
+  --bevel-dark: var(--haze);
   --primary: var(--gold);
   --on-primary: var(--cream);
   --link: var(--teal);
@@ -54,17 +76,19 @@
   --success: var(--forest);
   --danger: var(--crimson);
   --focus: var(--teal);
+  --glow-strength: 0;
 }
 
 @theme inline {
-  /* Drop Tailwind's default palette: only semantic tokens are available. */
+  /* Drop Tailwind's default palette: only these tokens are available. */
   --color-*: initial;
   --color-bg: var(--bg);
+  --color-bg-deep: var(--bg-deep);
   --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
   --color-text: var(--text);
   --color-muted: var(--text-muted);
   --color-border: var(--border);
-  --color-border-inner: var(--border-inner);
   --color-primary: var(--primary);
   --color-on-primary: var(--on-primary);
   --color-link: var(--link);
@@ -72,36 +96,46 @@
   --color-success: var(--success);
   --color-danger: var(--danger);
   --color-focus: var(--focus);
+  /* Fixed colors for always-dark "screens" (title screen, boot, cartridge labels). */
+  --color-void: var(--void);
   --color-night: var(--night);
   --color-dusk: var(--dusk);
+  --color-indigo: var(--indigo);
+  --color-haze: var(--haze);
   --color-cream: var(--cream);
-  --color-slate: var(--slate);
+  --color-yellow: var(--yellow);
+  --color-orange: var(--orange);
+  --color-cyan: var(--cyan);
+  --color-magenta: var(--magenta);
   --color-green: var(--green);
 
-  --font-pixel: var(--font-press-start), monospace;
-  --font-body: var(--font-vt323), system-ui, sans-serif;
+  --font-display: var(--font-jersey), var(--font-pixelify), monospace;
+  --font-ui: var(--font-pixelify), system-ui, sans-serif;
 
-  /* Pixel font on its 8 px grid. Body sizes never go below 20 px. */
-  --text-display-s: 8px;
-  --text-display-s--line-height: 1.5;
-  --text-display-m: 16px;
-  --text-display-m--line-height: 1.5;
-  --text-display-l: 24px;
-  --text-display-l--line-height: 1.5;
-  --text-display-xl: 40px;
-  --text-display-xl--line-height: 1.4;
-  --text-body-s: 20px;
-  --text-body-s--line-height: 1.3;
-  --text-body: 24px;
-  --text-body--line-height: 1.3;
-  --text-body-l: 28px;
-  --text-body-l--line-height: 1.3;
+  --text-label: 14px;
+  --text-label--line-height: 1.4;
+  --text-body-s: 17px;
+  --text-body-s--line-height: 1.5;
+  --text-body: 19px;
+  --text-body--line-height: 1.55;
+  --text-body-l: 22px;
+  --text-body-l--line-height: 1.5;
+  --text-title-s: 28px;
+  --text-title-s--line-height: 1.1;
+  --text-title: 40px;
+  --text-title--line-height: 1;
+  --text-title-l: 56px;
+  --text-title-l--line-height: 1;
+  --text-logo: 72px;
+  --text-logo--line-height: 0.85;
+  --text-logo-l: 128px;
+  --text-logo-l--line-height: 0.85;
 }
 
 /* Unlayered CSS would override Tailwind utilities, so everything goes in a layer. */
 @layer base {
   html {
-    scroll-padding-top: 88px; /* Keeps focused headings clear of the fixed PAUSE button. */
+    scroll-padding-top: 96px; /* Keeps focused headings clear of the fixed HUD. */
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -113,15 +147,15 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: var(--font-body);
-    font-size: 22px;
-    line-height: 1.3;
+    font-family: var(--font-ui);
+    font-size: 18px;
+    line-height: 1.55;
     -webkit-text-size-adjust: 100%;
   }
 
   @media (min-width: 768px) {
     body {
-      font-size: 24px;
+      font-size: 19px;
     }
   }
 
@@ -136,72 +170,161 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--focus);
-    outline-offset: 4px;
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
   }
 }
 
 /* ---------- Components (docs/STYLE_GUIDE.md#components) ---------- */
 @layer components {
-
-  /* RPG dialog box: double border with clipped pixel corners. */
-  .dialog-box {
+  /* Arcade panel: hard outline, beveled edges, banded fill. */
+  .panel {
     position: relative;
-    background: var(--surface);
-    border: 4px solid var(--border);
-    box-shadow:
-      inset 0 0 0 2px var(--surface),
-      inset 0 0 0 4px var(--border-inner);
-    padding: 16px;
-    clip-path: polygon(
-      4px 0,
-      calc(100% - 4px) 0,
-      100% 4px,
-      100% calc(100% - 4px),
-      calc(100% - 4px) 100%,
-      4px 100%,
-      0 calc(100% - 4px),
-      0 4px
+    background: linear-gradient(
+      180deg,
+      var(--surface-raised) 0 6px,
+      var(--surface) 6px calc(100% - 6px),
+      var(--bg-deep) calc(100% - 6px)
     );
+    border: 3px solid var(--border);
+    box-shadow:
+      inset 3px 3px 0 var(--bevel-light),
+      inset -3px -3px 0 var(--bevel-dark),
+      6px 6px 0 color-mix(in srgb, var(--bg-deep) 80%, transparent);
+    padding: 20px;
   }
 
   @media (min-width: 768px) {
-    .dialog-box {
-      padding: 24px;
+    .panel {
+      padding: 28px;
     }
   }
 
-  /* Pixel-font buttons with a hard offset shadow. */
-  .pixel-button {
+  /* Neon frame for highlighted panels; the glow fades out in the light theme. */
+  .panel-glow {
+    border-color: var(--glow, var(--link));
+    box-shadow:
+      inset 3px 3px 0 var(--bevel-light),
+      inset -3px -3px 0 var(--bevel-dark),
+      0 0 calc(24px * var(--glow-strength))
+        color-mix(in srgb, var(--glow, var(--link)) 45%, transparent),
+      6px 6px 0 color-mix(in srgb, var(--bg-deep) 80%, transparent);
+  }
+
+  /* Arcade logo text: banded gradient fill, dark outline, stepped extrusion. */
+  .arcade-text {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--yellow);
+    background: linear-gradient(
+      180deg,
+      var(--butter) 0 22%,
+      var(--yellow) 22% 50%,
+      var(--orange) 50% 78%,
+      var(--red) 78%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(2px 0 0 var(--void)) drop-shadow(-2px 0 0 var(--void))
+      drop-shadow(0 2px 0 var(--void)) drop-shadow(0 -2px 0 var(--void))
+      drop-shadow(4px 4px 0 var(--plum)) drop-shadow(3px 3px 0 var(--void));
+  }
+
+  .arcade-text-cool {
+    background: linear-gradient(
+      180deg,
+      var(--ice) 0 22%,
+      var(--cyan) 22% 55%,
+      var(--ocean) 55% 80%,
+      var(--teal) 80%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  /* Section titles in the light theme: solid ink instead of neon gradient. */
+  :root[data-theme="light"] .section-title {
+    background: none;
+    -webkit-text-fill-color: var(--night);
+    color: var(--night);
+    filter: drop-shadow(3px 3px 0 var(--haze));
+  }
+
+  /* Chunky arcade buttons with a 3D base. */
+  .arcade-button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    min-height: 48px;
-    padding: 12px 16px;
-    font-family: var(--font-pixel);
-    font-size: 16px;
-    line-height: 1.5;
+    gap: 10px;
+    min-height: 52px;
+    padding: 10px 22px 12px;
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     text-decoration: none;
-    border: 4px solid var(--border);
-    box-shadow: 4px 4px 0 var(--border-inner);
+    text-wrap: balance;
+    border: 3px solid var(--void);
+    box-shadow:
+      inset 0 3px 0 rgb(255 255 255 / 0.45),
+      inset 0 -4px 0 rgb(0 0 0 / 0.25),
+      0 6px 0 var(--void);
     cursor: pointer;
   }
 
-  .pixel-button:active {
-    transform: translate(4px, 4px);
-    box-shadow: none;
+  .arcade-button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 3px 0 rgb(255 255 255 / 0.55),
+      inset 0 -4px 0 rgb(0 0 0 / 0.25),
+      0 8px 0 var(--void);
   }
 
-  .pixel-button-primary {
-    background: var(--primary);
-    color: var(--on-primary);
+  .arcade-button:active {
+    transform: translateY(6px);
+    box-shadow:
+      inset 0 3px 0 rgb(255 255 255 / 0.3),
+      inset 0 -2px 0 rgb(0 0 0 / 0.25),
+      0 0 0 var(--void);
   }
 
-  .pixel-button-secondary {
+  .arcade-button-primary {
+    background: linear-gradient(180deg, var(--yellow) 0 55%, var(--orange) 55%);
+    color: var(--void);
+  }
+
+  .arcade-button-secondary {
+    background: linear-gradient(180deg, var(--cyan) 0 55%, var(--ocean) 55%);
+    color: var(--void);
+  }
+
+  .arcade-button-ghost {
     background: var(--surface);
     color: var(--text);
+    border-color: var(--border);
+    box-shadow:
+      inset 3px 3px 0 var(--bevel-light),
+      inset -3px -3px 0 var(--bevel-dark),
+      0 6px 0 var(--border);
+  }
+
+  /* Small HUD / label chips. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 10px;
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 2px solid currentColor;
   }
 
   /* Blinking menu cursor shown before the active item. */
@@ -225,64 +348,265 @@
 
   .menu-item:hover::before,
   .menu-item:focus-visible::before,
-  .menu-item[aria-current="true"]::before {
+  .menu-item[aria-current="true"]::before,
+  .menu-item[aria-pressed="true"]::before {
     visibility: visible;
   }
 
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
+  /* CRT scanlines over always-dark screens. */
+  .scanlines {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      180deg,
+      rgb(0 0 0 / 0.22) 0 1px,
+      transparent 1px 3px
+    );
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .menu-item:hover::before,
-    .menu-item:focus-visible::before {
-      animation: blink 1s steps(1, end) infinite;
-    }
-
-    /* Pulses a frame around the button; the label itself never disappears. */
-    .press-start {
-      animation: press-start-pulse 1.2s steps(1, end) infinite;
-    }
-
-    .press-start:hover,
-    .press-start:focus-visible {
-      animation: none;
-    }
-
-    .screen-in {
-      animation: screen-in 160ms steps(4, end);
-    }
+  /* Arcade boot screen (components/boot-screen.tsx). Hidden unless the head
+     script set "boot-active"; hides itself after 3.4 s even without React. */
+  .boot-screen {
+    display: none;
   }
 
-  @keyframes press-start-pulse {
-    50% {
-      outline: 4px solid var(--primary);
-      outline-offset: 6px;
-    }
+  :root.boot-active .boot-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--void);
+    color: var(--cream);
+    animation: boot-out 240ms steps(3) 3400ms forwards;
   }
 
-  @keyframes screen-in {
-    from {
-      clip-path: inset(0 0 100% 0);
-    }
-    to {
-      clip-path: inset(0 0 0 0);
-    }
+  .boot-line {
+    opacity: 0;
+    animation: appear 1ms forwards;
+    animation-delay: var(--d, 0ms);
   }
 
-  /* Pixel art bitmaps: integer scaling only, never smoothed. */
+  .boot-bar {
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: boot-bar 700ms steps(10) 750ms forwards;
+  }
+
+  /* Pixel-art bitmaps: integer scaling only, never smoothed. */
   .pixelated {
     image-rendering: pixelated;
   }
 
-  /* Section frame shared by every "game screen". */
-  .screen {
-    scroll-margin-top: 24px;
+  /* Scroll reveal. Content is only hidden once JS has marked motion as OK. */
+  :root.motion-ok .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 320ms steps(4),
+      transform 320ms steps(4);
   }
 
-  .menu-item[aria-pressed="true"]::before {
-    visibility: visible;
+  :root.motion-ok .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Animations (all off under prefers-reduced-motion) ---------- */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes press-start-pulse {
+  50% {
+    outline: 3px solid var(--yellow);
+    outline-offset: 6px;
+  }
+}
+
+@keyframes screen-in {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes code-line {
+  0% {
+    transform: scaleX(0);
+  }
+  12%,
+  80% {
+    transform: scaleX(1);
+  }
+  81%,
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes steam {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes logo-in {
+  0% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes boot-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes boot-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .press-start {
+    animation: press-start-pulse 1.2s steps(1, end) infinite;
+  }
+
+  .press-start:hover,
+  .press-start:focus-visible {
+    animation: none;
+  }
+
+  .menu-item:hover::before,
+  .menu-item:focus-visible::before {
+    animation: blink 1s steps(1, end) infinite;
+  }
+
+  .arcade-button {
+    transition:
+      transform 80ms steps(2),
+      box-shadow 80ms steps(2);
+  }
+
+  .blink {
+    animation: blink 1.2s steps(1, end) infinite;
+  }
+
+  .screen-in {
+    animation: screen-in 160ms steps(4, end);
+  }
+
+  .float {
+    animation: float 3s steps(3) infinite;
+  }
+
+  .drift-slow {
+    animation: drift 180s linear infinite;
+  }
+
+  .drift-fast {
+    animation: drift 100s linear infinite;
+  }
+
+  .twinkle {
+    animation: twinkle 3s steps(3) infinite;
+    animation-delay: calc(var(--i, 0) * 700ms);
+  }
+
+  .logo-in {
+    animation: logo-in 600ms steps(6) both;
+  }
+
+  /* Dev scene sprite animation. */
+  .ds-hand {
+    animation: bob 260ms steps(1) infinite;
+  }
+
+  .ds-hand-alt {
+    animation: bob 260ms steps(1) infinite 130ms;
+  }
+
+  .ds-code {
+    transform-box: fill-box;
+    transform-origin: left;
+    animation: code-line 6s steps(8) infinite;
+    animation-delay: calc(var(--i) * 450ms);
+  }
+
+  .ds-steam {
+    animation: steam 2.4s steps(4) infinite;
+    animation-delay: calc(var(--i) * 800ms);
+  }
+
+  .ds-blink {
+    animation: blink 1s steps(1) infinite;
+  }
+
+  .ds-head {
+    animation: bob 2.4s steps(1) infinite;
   }
 }

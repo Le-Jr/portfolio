@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { bodyFont, pixelFont } from "@/lib/fonts";
+import { displayFont, uiFont } from "@/lib/fonts";
 import type { Locale } from "@/lib/i18n";
 import { themeInitScript } from "@/lib/preferences";
 import { DeferredAnalytics } from "./deferred-analytics";
@@ -17,7 +17,7 @@ export function RootDocument({ locale, children }: RootDocumentProps) {
       data-theme="dark"
       // The inline script below may switch data-theme before hydration.
       suppressHydrationWarning
-      className={`${pixelFont.variable} ${bodyFont.variable}`}
+      className={`${displayFont.variable} ${uiFont.variable}`}
     >
       {/* App Router root layouts may render <head> directly; the rule targets the Pages Router. */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
