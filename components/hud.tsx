@@ -39,7 +39,7 @@ export function Hud({ locale, stages, menuItems, strings }: HudProps) {
   const stage = stages[current];
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b-3 border-void bg-void/90 text-parchment backdrop-blur-[2px]">
+    <header className="fixed inset-x-0 top-0 z-50 border-b-3 border-void bg-void/90 text-parchment">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 md:px-8">
         <a
           href="#start"

@@ -34,6 +34,17 @@ export function PauseMenu({ locale, sections, strings }: PauseMenuProps) {
     if (open) panelRef.current?.querySelector<HTMLElement>("[data-nav-item]")?.focus();
   }, [open]);
 
+  // On small screens the menu covers the page, so the page behind it must not scroll.
+  useEffect(() => {
+    if (!open || !window.matchMedia("(max-width: 767px)").matches) return;
+    const root = document.documentElement;
+    const previous = root.style.overflow;
+    root.style.overflow = "hidden";
+    return () => {
+      root.style.overflow = previous;
+    };
+  }, [open]);
+
   function close(returnFocus: boolean) {
     setOpen(false);
     if (returnFocus) toggleRef.current?.focus();
@@ -96,7 +107,7 @@ export function PauseMenu({ locale, sections, strings }: PauseMenuProps) {
             aria-modal="true"
             aria-label={strings.menu.label}
             onKeyDown={handlePanelKeyDown}
-            className="panel screen-in fixed inset-x-4 top-20 bottom-4 overflow-y-auto text-text md:absolute md:inset-auto md:top-full md:right-0 md:bottom-auto md:mt-4 md:max-h-[calc(100dvh-6rem)] md:w-[460px]"
+            className="panel screen-in fixed inset-x-4 top-20 max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain text-text sm:left-auto sm:w-[460px] md:absolute md:inset-auto md:top-full md:right-0 md:mt-4 md:w-[460px]"
           >
             <ArrowNav className="flex flex-col gap-6">
               <nav aria-label={strings.menu.navLabel}>
