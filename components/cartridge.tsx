@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Project } from "@/content/projects";
 import type { Locale } from "@/lib/i18n";
@@ -55,17 +56,28 @@ export function Cartridge({ project, locale, strings }: CartridgeProps) {
   return (
     <Shell
       label={
-        // Each cartridge shows its own project's look; Lords of Logic is a terminal.
-        <div className="flex h-44 flex-col justify-center gap-1 bg-void px-5 font-mono text-[17px] leading-snug text-olive">
-          <span aria-hidden="true" className="text-khaki">
-            $ ./lords-of-logic --start
-          </span>
-          <span aria-hidden="true">[ok] loading questions...</span>
-          <span className="text-[22px] font-bold">
-            &gt; {project.name.toUpperCase()}
-            <span className="blink">_</span>
-          </span>
-        </div>
+        typeof project.label === "object" ? (
+          <div className="flex h-44 items-center justify-center bg-void">
+            <Image
+              src={project.label.src}
+              alt={project.label.alt[locale]}
+              width={project.label.width}
+              height={project.label.height}
+              className="h-full w-full object-contain"
+            />
+          </div>
+        ) : (
+          <div className="flex h-44 flex-col justify-center gap-1 bg-void px-5 font-mono text-[17px] leading-snug text-olive">
+            <span aria-hidden="true" className="text-khaki">
+              $ ./lords-of-logic --start
+            </span>
+            <span aria-hidden="true">[ok] loading questions...</span>
+            <span className="text-[22px] font-bold">
+              &gt; {project.name.toUpperCase()}
+              <span className="blink">_</span>
+            </span>
+          </div>
+        )
       }
     >
       <h3 className="arcade-text text-title leading-none">{project.name}</h3>

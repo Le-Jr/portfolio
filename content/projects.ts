@@ -12,7 +12,7 @@ export type Project =
       /** Optional "behind the scenes" paragraph. The button is hidden while unset. */
       behindTheScenes?: Localized;
       /** Cartridge label look. Each project keeps its own visual identity. */
-      label: "terminal";
+      label: "terminal" | { src: string; alt: Localized; width: number; height: number };
     }
   | {
       kind: "coming-soon";
@@ -22,6 +22,31 @@ export type Project =
 
 // Copy reference: docs/CONTENT.md. Add a cartridge by adding an entry here.
 export const projects: Project[] = [
+  {
+    kind: "released",
+    id: "brainrot-battaglia",
+    name: "Brainrot Battaglia: Ultra Caos",
+    url: "https://brainrot-battle-nine.vercel.app/",
+    genre: { en: "2D arcade fighter", "pt-BR": "Luta arcade 2D" },
+    description: {
+      en: "Italian brainrot memes face off in a 2D arcade fighter with a story campaign, local versus, combos and special moves. Original pixel art and music synthesized in the browser.",
+      "pt-BR":
+        "Memes do Italian brainrot se enfrentam em um jogo de luta arcade 2D com campanha, versus local, combos e golpes especiais. Pixel art original e música sintetizada no navegador.",
+    },
+    builtWith: {
+      en: "Next.js, TypeScript, Canvas 2D and Web Audio",
+      "pt-BR": "Next.js, TypeScript, Canvas 2D e Web Audio",
+    },
+    label: {
+      src: "/projects/brainrot-battaglia.webp",
+      alt: {
+        en: "Brainrot Battaglia: Ultra Caos title screen with its pixel-art fighters against a cosmic backdrop.",
+        "pt-BR": "Tela de título de Brainrot Battaglia: Ultra Caos com seus lutadores em pixel art em um cenário cósmico.",
+      },
+      width: 640,
+      height: 360,
+    },
+  },
   {
     kind: "released",
     id: "lords-of-logic",

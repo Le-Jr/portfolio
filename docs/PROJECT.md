@@ -1,6 +1,6 @@
 # Project scope
 
-A personal portfolio for **Leandro Junior** with a 32-bit arcade look (modern pixel art, in the spirit of Neo Geo-era cabinets). The planning doc started from a Super Nintendo (16-bit) look; the owner moved it to the arcade direction on October 16, 2026. It is the first public portfolio, built to introduce who Leandro is and to **start SaaS partnership conversations** with companies and influencers. Version 1 launches with one project, **Lords of Logic**, and is designed to grow with each new product.
+A personal portfolio for **Leandro Junior** with a 32-bit arcade look (modern pixel art, in the spirit of Neo Geo-era cabinets). The planning doc started from a Super Nintendo (16-bit) look; the owner moved it to the arcade direction on October 16, 2026. It is the first public portfolio, built to introduce who Leandro is and to **start SaaS partnership conversations** with companies and influencers. Version 1 includes **Brainrot Battaglia: Ultra Caos** (the newest project) and **Lords of Logic**, and is designed to grow with each new product.
 
 ## Goal
 
@@ -36,7 +36,7 @@ Version 1 is a **single scrolling page**. Each section imitates a game screen, u
 | 2 | About | Player select | Pixel-art portrait on a "selected" card, a character grid with an open 2P slot, class ("Full-Stack Dev"), attributes and a short paragraph |
 | 3 | Timeline | Career mode | Stages stacked top to bottom in time order along a level path; each stage shows its years, title and text, with the current one marked "NOW PLAYING" |
 | 4 | Skills | Inventory and status bar | Stack grouped by category, with items (and optional RPG levels per category) |
-| 5 | Projects | Cartridge select | One cartridge per project. In version 1: Lords of Logic and a "coming soon" cartridge |
+| 5 | Projects | Cartridge select | One cartridge per project. In version 1: Brainrot Battaglia: Ultra Caos, Lords of Logic and a "coming soon" cartridge |
 | 6 | Partnerships | "PLAYER 2, PRESS START" co-op screen | 1P (Leandro) + 2P (the visitor), the offer, how it works as four rounds, and contact |
 | 7 | Footer | Credits screen | "Thank you for playing", links (GitHub, LinkedIn, email), "made by" and credits |
 
@@ -62,7 +62,7 @@ All copy is in [CONTENT.md](CONTENT.md). Visual direction is in [STYLE_GUIDE.md]
 - English by default, toggle for pt-BR
 - Dark mode by default, toggle for light mode
 - Pixel-art avatar, skill icons and UI icons
-- Lords of Logic cartridge and a "coming soon" cartridge
+- Brainrot Battaglia: Ultra Caos and Lords of Logic cartridges, plus a "coming soon" cartridge
 - Contact by email (`mailto:`) and a LinkedIn link
 - Preview image for sharing on social networks and WhatsApp (Open Graph)
 - Basic analytics: visits, "play" clicks and contact clicks

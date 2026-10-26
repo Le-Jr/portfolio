@@ -212,6 +212,22 @@ Skill icons are decorative (`aria-hidden="true"`) because the item name is shown
 
 > `projects.title` is new UI copy; confirm or replace it.
 
+### Cartridge: Brainrot Battaglia: Ultra Caos
+
+Newest project; displayed before Lords of Logic.
+
+| Key | en | pt-BR |
+| --- | --- | --- |
+| `name` | Brainrot Battaglia: Ultra Caos | Brainrot Battaglia: Ultra Caos |
+| `url` | https://brainrot-battle-nine.vercel.app/ | — |
+| `genre` | 2D arcade fighter | Luta arcade 2D |
+| `description` | Italian brainrot memes face off in a 2D arcade fighter with a story campaign, local versus, combos and special moves. Original pixel art and music synthesized in the browser. | Memes do Italian brainrot se enfrentam em um jogo de luta arcade 2D com campanha, versus local, combos e golpes especiais. Pixel art original e música sintetizada no navegador. |
+| `builtWith` | Next.js, TypeScript, Canvas 2D and Web Audio | Next.js, TypeScript, Canvas 2D e Web Audio |
+| `label.alt` | Brainrot Battaglia: Ultra Caos title screen with its pixel-art fighters against a cosmic backdrop. | Tela de título de Brainrot Battaglia: Ultra Caos com seus lutadores em pixel art em um cenário cósmico. |
+| `cta.play` | PLAY NOW | JOGAR AGORA |
+
+The label uses the title-screen image from `assets/readme/banner.png` in [the project repository](https://github.com/Le-Jr/brainrot-battle), converted to WebP locally.
+
 ### Cartridge: Lords of Logic
 
 | Key | en | pt-BR |
